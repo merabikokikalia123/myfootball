@@ -1,0 +1,23 @@
+<h2>ყველა ჯავშანი</h2>
+
+<div *ngIf="bookings.length === 0">
+  ჯავშნები არ მოიძებნა.
+</div>
+
+<div *ngFor="let booking of bookings" class="booking-card">
+  <div class="booking-row">
+    <div class="booking-column">
+      <p><strong>მომხმარებელი:</strong> {{ booking.customerName }}</p>
+      <p><strong>ტელეფონის ნომერი:</strong> {{ booking.customerPhone }}</p>
+    </div>
+
+    <div class="booking-column">
+      <p><strong>ჩასვლა:</strong> {{ booking.checkInDate | date }}</p>
+      <p><strong>გასვლა:</strong> {{ booking.checkOutDate | date }}</p>
+      <p><strong>სრული ფასი:</strong> {{ booking.totalPrice | currency:'GEL' }}</p>
+    </div>
+  </div>
+
+  <hr>
+  <button (click)="deleteBooking(booking.id)" class="delete-button">წაშლა</button>
+</div>
