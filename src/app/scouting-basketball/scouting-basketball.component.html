@@ -1,0 +1,78 @@
+<p>scouting-basketball works!</p>
+<div class="container mt-5">
+
+  <h2 class="text-center mb-4">🏀 Basketball Scouting</h2>
+
+  <!-- LOCK -->
+  <div *ngIf="!isPremium" class="alert alert-warning text-center">
+    🔒 Add Player და ფილტრები ხელმისაწვდომია მხოლოდ Premium წევრებისთვის
+    <br><br>
+    <a routerLink="/premium" class="btn btn-dark">Buy Premium</a>
+  </div>
+
+  <!-- PREMIUM CONTENT -->
+  <div *ngIf="isPremium">
+
+    <!-- FILTERS -->
+    <div class="row mb-4">
+      <div class="col-md-3">
+        <input type="number" class="form-control" placeholder="Age"
+               [(ngModel)]="ageFilter">
+      </div>
+
+      <div class="col-md-3">
+        <input type="text" class="form-control" placeholder="Position (PG, SG...)"
+               [(ngModel)]="positionFilter">
+      </div>
+
+      <div class="col-md-3">
+        <input type="number" class="form-control" placeholder="Height (cm)"
+               [(ngModel)]="heightFilter">
+      </div>
+
+      <div class="col-md-3">
+        <button class="btn btn-dark w-100" (click)="filterPlayers()">
+          Filter
+        </button>
+      </div>
+    </div>
+
+    <!-- ADD PLAYER -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5>Add Basketball Player</h5>
+
+        <input class="form-control mb-2" placeholder="Name"
+               [(ngModel)]="name">
+
+        <input type="number" class="form-control mb-2" placeholder="Age"
+               [(ngModel)]="age">
+
+        <input class="form-control mb-2" placeholder="Position (PG/SG/SF/PF/C)"
+               [(ngModel)]="position">
+
+        <input type="number" class="form-control mb-2" placeholder="Height (cm)"
+               [(ngModel)]="height">
+
+        <button class="btn btn-success" (click)="addPlayer()">
+          ➕ Add Player
+        </button>
+      </div>
+    </div>
+
+    <!-- PLAYERS -->
+    <div class="row">
+      <div class="col-md-4 mb-3" *ngFor="let p of players">
+        <div class="card">
+          <div class="card-body">
+            <h5>{{ p.name }}</h5>
+            <p>Age: {{ p.age }}</p>
+            <p>Position: {{ p.position }}</p>
+            <p>Height: {{ p.height }} cm</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

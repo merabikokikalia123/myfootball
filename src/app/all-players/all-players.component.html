@@ -1,0 +1,69 @@
+<p>all-players works!</p>
+<div class="container mt-5">
+  <h2 class="mb-4">⚽ All Players</h2>
+
+  <!-- Filters -->
+  <div class="row mb-4">
+    <div class="col-md-3">
+      <select class="form-select" [(ngModel)]="sportFilter">
+        <option value="">All Sports</option>
+        <option value="Football">Football</option>
+        <option value="Judo">Judo</option>
+        <option value="Basketball">Basketball</option>
+        <option value="MMA">MMA</option>
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <input type="number" class="form-control" placeholder="Age"
+             [(ngModel)]="ageFilter">
+    </div>
+
+    <div class="col-md-3">
+      <input type="text" class="form-control" placeholder="Position"
+             [(ngModel)]="positionFilter">
+    </div>
+
+    <div class="col-md-3">
+      <button class="btn btn-dark w-100" (click)="applyFilter()">
+        Filter
+      </button>
+    </div>
+  </div>
+
+  <!-- Football -->
+  <h3>Football</h3>
+  <div class="list-group mb-4">
+    <div class="list-group-item"
+         *ngFor="let p of footballPlayers">
+      {{ p.name }} | {{ p.age }} | {{ p.position }}
+    </div>
+  </div>
+
+  <!-- Judo -->
+  <h3>Judo</h3>
+  <div class="list-group mb-4">
+    <div class="list-group-item"
+         *ngFor="let p of judoPlayers">
+      {{ p.name }} | {{ p.age }} | {{ p.position }}
+    </div>
+  </div>
+
+  <!-- Basketball -->
+  <h3>Basketball</h3>
+  <div class="list-group mb-4">
+    <div class="list-group-item"
+         *ngFor="let p of basketballPlayers">
+      {{ p.name }} | {{ p.age }} | {{ p.position }}
+    </div>
+  </div>
+
+  <!-- MMA -->
+  <h3>MMA</h3>
+  <div class="list-group mb-4">
+    <div class="list-group-item"
+         *ngFor="let p of mmaPlayers">
+      {{ p.name }} | {{ p.age }} | {{ p.position }}
+    </div>
+  </div>
+</div>

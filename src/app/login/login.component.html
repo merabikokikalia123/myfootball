@@ -1,0 +1,82 @@
+<div class="login-container">
+
+  <div class="login-left">
+    <div class="football-icon">⚽</div>
+    <h1>Football Page</h1>
+    <p>Join the football world. News, players, scouting and more.</p>
+  </div>
+
+  <div class="login-right">
+
+    <div class="login-header">
+      <h2>Welcome Back!</h2>
+      <p>Please login to your account</p>
+    </div>
+
+    <div class="error-message" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+
+    <div class="success-message" *ngIf="successMessage">
+      {{ successMessage }}
+    </div>
+
+    <form (ngSubmit)="login()">
+
+      <div class="form-group">
+        <label>Email Address</label>
+        <div class="input-wrapper">
+          <span class="input-icon">📧</span>
+          <input
+            type="email"
+            name="email"
+            [(ngModel)]="email"
+            placeholder="Enter your email"
+            required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <div class="input-wrapper">
+          <span class="input-icon">🔒</span>
+          <input
+            type="password"
+            name="password"
+            [(ngModel)]="password"
+            placeholder="Enter your password"
+            required>
+        </div>
+      </div>
+
+      <div class="forgot-password">
+        <a routerLink="/forgot-password">Forgot Password?</a>
+      </div>
+
+      <button type="submit" class="login-btn">Login</button>
+
+    </form>
+
+    <div class="divider"><span>OR</span></div>
+
+    <div class="social-login">
+      <a href="https://www.facebook.com/" target="_blank" class="social-btn facebook">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Facebook_icon.svg">
+      </a>
+
+      <a href="https://www.instagram.com/" target="_blank" class="social-btn instagram">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg">
+      </a>
+
+      <a href="https://wa.me/" target="_blank" class="social-btn whatsapp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+      </a>
+    </div>
+
+    <div class="signup-link">
+      Don't have an account?
+      <a routerLink="/register">Sign Up</a>
+    </div>
+
+  </div>
+</div>

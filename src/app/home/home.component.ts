@@ -5,54 +5,32 @@ import { HttpService } from '../service/http.service';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  standalone:false,
+  standalone: false,
 })
 export class HomeComponent implements OnInit {
-  deluxeRooms: any[] = [];
-checkIn: any;
-checkOut: any;
-minPrice: any;
-maxPrice: any;
+
+  footballNews: any[] = [];
+  judoNews: any[] = [];
+  basketballNews: any[] = [];
+  mmaNews: any[] = [];
 
   constructor(private httpService: HttpService) {}
 
-  ngOnInit() {
-    this.loadDeluxeRooms();
+  ngOnInit(): void {
+    this.loadNews();
   }
 
-  loadDeluxeRooms() {
-    this.httpService.getAllRooms().subscribe({
-      next: (rooms) => {
-        this.deluxeRooms = rooms.filter((room: any) =>
-          room.name.toLowerCase().includes('deluxe')
-        );
+  loadNews(): void {
+    this.httpService.getAllNews().subscribe({
+      next: (news) => {
+        this.footballNews   = news.filter((n: any) => n.category === 'football');
+        this.judoNews       = news.filter((n: any) => n.category === 'judo');
+        this.basketballNews = news.filter((n: any) => n.category === 'basketball');
+        this.mmaNews        = news.filter((n: any) => n.category === 'mma');
       },
       error: (err) => {
-        console.error('ოთახების ჩატვირთვა ვერ მოხერხდა:', err);
-      },
-    });
-  }
-
-  bookNow(roomId: number) {
-    // აქ საჭიროა რეალური მომხმარებლის მონაცემები
-    const bookingData = {
-      roomId: roomId,
-      customerName: 'გიორგი ვაშაკიძე',   
-      customerPhone: '599123456',         
-      checkInDate: '2025-06-01',           
-      checkOutDate: '2025-06-05',          
-  totalPrice: 500              
-    };
-
-    this.httpService.createBooking(bookingData).subscribe({
-      next: (response) => {
-        alert('ჯავშნა წარმატებით შესრულდა!');
-        console.log('Booking response:', response);
-      },
-      error: (error) => {
-        alert('შეცდომა ჯავშნის დროს. სცადეთ ხელახლა.');
-        console.error(error);
-      },
+        console.error('News ვერ ჩაიტვირთა:', err);
+      }
     });
   }
 }

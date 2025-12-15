@@ -1,0 +1,72 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">🥋 Judo Scouting</h2>
+
+  <!-- LOCK MESSAGE -->
+  <div *ngIf="!isPremium" class="alert alert-warning text-center">
+    🔒 Add Athlete და ფილტრები ხელმისაწვდომია მხოლოდ Premium წევრებისთვის
+    <br><br>
+    <a routerLink="/premium" class="btn btn-dark">Buy Premium</a>
+  </div>
+
+  <!-- PREMIUM CONTENT -->
+  <div *ngIf="isPremium">
+
+    <!-- FILTERS -->
+    <div class="row mb-4">
+      <div class="col-md-4">
+        <input
+          type="number"
+          class="form-control"
+          placeholder="Weight (kg)"
+          [(ngModel)]="weightFilter"
+        >
+      </div>
+
+      <div class="col-md-4">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Belt"
+          [(ngModel)]="beltFilter"
+        >
+      </div>
+
+      <div class="col-md-4">
+        <button class="btn btn-dark w-100" (click)="filterAthletes()">
+          Filter
+        </button>
+      </div>
+    </div>
+
+    <!-- ADD ATHLETE -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5>Add Judo Athlete</h5>
+
+        <input class="form-control mb-2" placeholder="Name">
+        <input type="number" class="form-control mb-2" placeholder="Age">
+        <input type="number" class="form-control mb-2" placeholder="Weight (kg)">
+        <input class="form-control mb-2" placeholder="Belt">
+
+        <button class="btn btn-success" (click)="addAthlete()">
+          ➕ Add Athlete
+        </button>
+      </div>
+    </div>
+
+    <!-- ATHLETES LIST -->
+    <div class="row g-3">
+      <div class="col-md-4" *ngFor="let athlete of filteredAthletes">
+        <div class="card">
+          <div class="card-body">
+            <h5>{{ athlete.name }}</h5>
+            <p>Age: {{ athlete.age }}</p>
+            <p>Weight: {{ athlete.weight }} kg</p>
+            <p>Belt: {{ athlete.belt }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

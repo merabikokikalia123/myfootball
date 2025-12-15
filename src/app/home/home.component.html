@@ -1,59 +1,58 @@
-<div class="image-container">
-    <div class="overlay-content">
-      <h2 class="overlay-text">Five star hotels</h2>
-      <button class="image-button" [routerLink]="['/hotels']">SEE hotels</button>
+<div class="container mt-5">
 
-    </div>
-    <img src="https://images.unsplash.com/photo-1612454882322-2cc894734fd2?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="ფოტო">
-  </div>
-  
-
-  <section *ngIf="deluxeRooms.length > 0">
-  <h3 class="text-center my-4">🌟 Guest favorite rooms</h3>
-  <div class="d-flex flex-wrap justify-content-center gap-4">
-    <div *ngFor="let room of deluxeRooms" class="card shadow" style="width: 20rem;">
-      <div id="carousel{{room.id}}" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div *ngFor="let image of room.images; let i = index" class="carousel-item" [ngClass]="{'active': i === 0}">
-            <img [src]="image.source" class="d-block w-100" [alt]="room.name" />
-          </div>
+  <h2 class="page-title mb-4">Latest Football News</h2>
+  <div class="row g-3">
+    <div class="col-md-4" *ngFor="let news of footballNews">
+      <div class="card h-100">
+        <img [src]="news.imageUrl" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">{{ news.title }}</h5>
+          <p class="card-text">{{ news.description }}</p>
         </div>
-        <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carousel' + room.id" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carousel' + room.id" data-bs-slide="next">
-          <span class="carousel-control-next-icon"></span>
-        </button>
-      </div>
-      <div class="card-body">
-        <h5 class="card-title">{{ room.name }}</h5>
-        <p class="card-text">💲 ღირებულება: {{ room.pricePerNight }} ₾</p>
-        <p class="card-text">👥 მაქსიმუმ სტუმრები: {{ room.maximumGuests }}</p>
-
-        <!-- აქ არის დაჯავშნის ღილაკი routerLink-ით -->
-        <button
-          [routerLink]="['/booking']"
-          [queryParams]="{
-            roomID: room.id,
-            checkInDate: checkIn,
-            checkOutDate: checkOut,
-            price: room.pricePerNight,
-            isConfirmed: true,
-            minPrice: minPrice,
-            maxPrice: maxPrice,
-            guests: room.maximumGuests
-          }"
-          class="btn btn-primary w-100"
-          [disabled]="!room.available">
-          დაჯავშნა
-        </button>
-
       </div>
     </div>
   </div>
-</section>
 
+  <h2 class="page-title mt-5 mb-4">Latest Judo News</h2>
+  <div class="row g-3">
+    <div class="col-md-4" *ngFor="let news of judoNews">
+      <div class="card h-100">
+        <img [src]="news.imageUrl" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">{{ news.title }}</h5>
+          <p class="card-text">{{ news.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <h2 class="page-title mt-5 mb-4">Latest Basketball News</h2>
+  <div class="row g-3">
+    <div class="col-md-4" *ngFor="let news of basketballNews">
+      <div class="card h-100">
+        <img [src]="news.imageUrl" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">{{ news.title }}</h5>
+          <p class="card-text">{{ news.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="page-title mt-5 mb-4">Latest MMA News</h2>
+  <div class="row g-3">
+    <div class="col-md-4" *ngFor="let news of mmaNews">
+      <div class="card h-100">
+        <img [src]="news.imageUrl" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">{{ news.title }}</h5>
+          <p class="card-text">{{ news.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
 
   
 

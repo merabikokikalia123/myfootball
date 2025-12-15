@@ -1,0 +1,71 @@
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4">🥊 MMA Scouting</h2>
+
+  <!-- LOCK MESSAGE -->
+  <div *ngIf="!isPremium" class="alert alert-warning text-center">
+    🔒 Add Fighter და ფილტრები ხელმისაწვდომია მხოლოდ Premium წევრებისთვის
+    <br><br>
+    <a routerLink="/premium" class="btn btn-dark">Buy Premium</a>
+  </div>
+
+  <!-- PREMIUM CONTENT -->
+  <div *ngIf="isPremium">
+
+    <!-- FILTERS -->
+    <div class="row mb-4">
+      <div class="col-md-4">
+        <input
+          class="form-control"
+          placeholder="Weight Class"
+          [(ngModel)]="weightClassFilter"
+        >
+      </div>
+
+      <div class="col-md-4">
+        <input
+          class="form-control"
+          placeholder="Record (e.g. 10-2)"
+          [(ngModel)]="recordFilter"
+        >
+      </div>
+
+      <div class="col-md-4">
+        <button class="btn btn-dark w-100" (click)="filterFighters()">
+          Filter
+        </button>
+      </div>
+    </div>
+
+    <!-- ADD FIGHTER -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5>Add MMA Fighter</h5>
+
+        <input class="form-control mb-2" placeholder="Name">
+        <input type="number" class="form-control mb-2" placeholder="Age">
+        <input class="form-control mb-2" placeholder="Weight Class">
+        <input class="form-control mb-2" placeholder="Record">
+
+        <button class="btn btn-success" (click)="addFighter()">
+          ➕ Add Fighter
+        </button>
+      </div>
+    </div>
+
+    <!-- FIGHTERS LIST -->
+    <div class="row g-3">
+      <div class="col-md-4" *ngFor="let fighter of filteredFighters">
+        <div class="card">
+          <div class="card-body">
+            <h5>{{ fighter.name }}</h5>
+            <p>Age: {{ fighter.age }}</p>
+            <p>Weight Class: {{ fighter.weightClass }}</p>
+            <p>Record: {{ fighter.record }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

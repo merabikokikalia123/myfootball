@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { HeaderComponent } from './header/header.component';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  standalone: false,
-  styleUrl: './app.component.css'
+  standalone: true,
+  imports: [RouterOutlet, HeaderComponent],
+  templateUrl: './app.component.html'
 })
-export class AppComponent {
-  title = 'angularprjct';
-}
+export class AppComponent {}

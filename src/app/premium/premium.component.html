@@ -1,0 +1,113 @@
+<p>premium works!</p>
+<div class="premium-container">
+
+  <div class="header">
+    <h1>⚽ Premium Dashboard</h1>
+    <p>აირჩიე შენთვის სასურველი პაკეტი</p>
+  </div>
+
+  <div id="message" *ngIf="message">
+    {{ message }}
+  </div>
+
+  <!-- Premium Plans Section -->
+  <div id="plans-section" *ngIf="!showDashboard">
+
+    <h2 class="plans-title">Premium პაკეტები</h2>
+
+    <!-- Comparison Info -->
+    <div class="comparison-info">
+      <div class="comparison-card">
+        <h4>Basic - $20/თვე</h4>
+        <p>ნახვის რეჟიმი + 1 პლეიერის დამატება</p>
+      </div>
+
+      <div class="comparison-card highlight">
+        <h4>⚡ Standard - $40/თვე</h4>
+        <p>1 თვის განმავლობაში რედაქტირების უფლება + 2 პლეიერის დამატება</p>
+      </div>
+
+      <div class="comparison-card premium">
+        <h4>👑 Premium - $60/თვე</h4>
+        <p>5 პლეიერის დამატება + უსასრულო რედაქტირება</p>
+      </div>
+    </div>
+
+    <div class="plans-grid">
+
+      <!-- Basic -->
+      <div class="plan-card">
+        <div class="plan-badge">BASIC</div>
+        <div class="plan-price">$20<span>/თვე</span></div>
+        <h3 class="plan-name">საწყისი პაკეტი</h3>
+        <ul class="plan-features">
+          <li>✓ ძირითადი სტატისტიკა</li>
+          <li>✓ მოთამაშეთა ძირითადი ინფორმაცია</li>
+          <li>✓ 1 პლეიერის დამატება</li>
+        </ul>
+        <button
+          class="plan-btn btn-basic"
+          (click)="selectPlan('Basic', 20, 1, 0)">
+          აირჩიე Basic
+        </button>
+      </div>
+
+      <!-- Standard -->
+      <div class="plan-card plan-featured">
+        <div class="plan-badge badge-popular">POPULAR</div>
+        <div class="plan-price">$40<span>/თვე</span></div>
+        <h3 class="plan-name">სტანდარტული პაკეტი</h3>
+
+        <div class="plan-highlight">
+          <strong>🎯 1 პლეიერის დამატება + 1 თვიანი რედაქტირება</strong>
+        </div>
+
+        <ul class="plan-features">
+          <li>✓ მოთამაშეთა სრული პროფილები</li>
+          <li>✓ რეკლამების გარეშე</li>
+          <li class="special">⭐ 1 პლეიერის დამატება</li>
+          <li class="special">⭐ 1 თვის რედაქტირების უფლება</li>
+          <li>✓ ტრანსფერების დეტალური ინფორმაცია</li>
+        </ul>
+
+        <button
+          class="plan-btn btn-standard"
+          (click)="selectPlan('Standard', 40, 1, 30)">
+          აირჩიე Standard
+        </button>
+      </div>
+
+      <!-- Premium -->
+      <div class="plan-card">
+        <div class="plan-badge badge-vip">VIP</div>
+        <div class="plan-price">$60<span>/თვე</span></div>
+        <h3 class="plan-name">პრემიუმ პაკეტი</h3>
+
+        <div class="plan-highlight premium-highlight">
+          <strong>5 პლეიერის დამატება + უსასრულო რედაქტირება</strong>
+        </div>
+
+        <ul class="plan-features">
+          <li>✓ მოთამაშეთა სრული დოსიეები</li>
+          <li>✓ რეკლამების გარეშე</li>
+          <li class="special">⭐ 5 პლეიერების დამატება</li>
+          <li class="special">⭐ უსასრულო რედაქტირების უფლება</li>
+          <li>✓ პრიორიტეტული მხარდაჭერა 24/7</li>
+        </ul>
+
+        <button
+          class="plan-btn btn-premium"
+          (click)="selectPlan('Premium', 60, 5, 999)">
+          აირჩიე Premium
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="dashboard-section" *ngIf="showDashboard">
+    <div id="content" class="loading">იტვირთება...</div>
+  </div>
+
+</div>
