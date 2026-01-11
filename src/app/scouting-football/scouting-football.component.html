@@ -1,15 +1,45 @@
 <!-- ADD PLAYER -->
 <div class="card mb-4">
   <div class="card-body">
-    <h5>Add Football Player </h5>
+    <h5>Add Football Player</h5>
 
-    <input class="form-control mb-2" placeholder="Full Name" [(ngModel)]="name">
-    <input type="number" class="form-control mb-2" placeholder="Age" [(ngModel)]="age">
-    <input class="form-control mb-2" placeholder="Position" [(ngModel)]="position">
-    <input type="number" class="form-control mb-2" placeholder="Height (cm)" [(ngModel)]="height">
-    <input class="form-control mb-2" placeholder="Photo URL" [(ngModel)]="photoUrl">
-    <input class="form-control mb-2" placeholder="YouTube Video URL" [(ngModel)]="videoUrl">
-    <input class="form-control mb-2" placeholder="Country" [(ngModel)]="country">
+    <input
+      class="form-control mb-2"
+      placeholder="Full Name"
+      [(ngModel)]="name"
+    />
+    <input
+      type="number"
+      class="form-control mb-2"
+      placeholder="Age"
+      [(ngModel)]="age"
+    />
+    <input
+      class="form-control mb-2"
+      placeholder="Position"
+      [(ngModel)]="position"
+    />
+    <input
+      type="number"
+      class="form-control mb-2"
+      placeholder="Height (cm)"
+      [(ngModel)]="height"
+    />
+    <input
+      class="form-control mb-2"
+      placeholder="Photo URL"
+      [(ngModel)]="photoUrl"
+    />
+    <input
+      class="form-control mb-2"
+      placeholder="YouTube Video URL"
+      [(ngModel)]="videoUrl"
+    />
+    <input
+      class="form-control mb-2"
+      placeholder="Country"
+      [(ngModel)]="country"
+    />
 
     <button class="btn btn-success w-100" (click)="buyPlayerSlot()">
       ➕ Add Player
@@ -21,7 +51,12 @@
 <div class="row">
   <div class="col-md-4 mb-3" *ngFor="let p of filteredPlayers">
     <div class="card h-100">
-      <img [src]="p.photoUrl" class="card-img-top" alt="{{p.name}}" *ngIf="p.photoUrl">
+      <img
+        [src]="p.photoUrl"
+        class="card-img-top"
+        alt="{{ p.name }}"
+        *ngIf="p.photoUrl"
+      />
       <div class="card-body">
         <h5>{{ p.name }}</h5>
         <p>Age: {{ p.age }}</p>
@@ -30,12 +65,19 @@
         <p>Country: {{ p.country }}</p>
 
         <div *ngIf="p.videoUrl">
-          <iframe [src]="p.videoUrl | safeUrl" frameborder="0" allowfullscreen width="100%" height="200"></iframe>
+          <iframe
+            [src]="p.videoUrl | safeUrl"
+            frameborder="0"
+            allowfullscreen
+            width="100%"
+            height="200"
+          ></iframe>
         </div>
 
         <button
           class="btn btn-danger btn-sm mt-2 w-100"
-          (click)="deletePlayer(p)">
+          (click)="deletePlayer(p)"
+        >
           🗑 Delete
         </button>
       </div>

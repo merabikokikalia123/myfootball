@@ -7,37 +7,53 @@
     <div class="form-grid">
       <div class="form-group">
         <label>სახელი *</label>
-        <input type="text" [(ngModel)]="name" placeholder="მოთამაშის სახელი">
+        <input type="text" [(ngModel)]="name" placeholder="მოთამაშის სახელი" />
       </div>
 
       <div class="form-group">
         <label>ასაკი *</label>
-        <input type="number" [(ngModel)]="age" placeholder="ასაკი">
+        <input type="number" [(ngModel)]="age" placeholder="ასაკი" />
       </div>
 
       <div class="form-group">
         <label>პოზიცია *</label>
-        <input type="text" [(ngModel)]="position" placeholder="მაგ: Point Guard, Center">
+        <input
+          type="text"
+          [(ngModel)]="position"
+          placeholder="მაგ: Point Guard, Center"
+        />
       </div>
 
       <div class="form-group">
         <label>სიმაღლე (სმ) *</label>
-        <input type="number" [(ngModel)]="height" placeholder="სიმაღლე სანტიმეტრებში">
+        <input
+          type="number"
+          [(ngModel)]="height"
+          placeholder="სიმაღლე სანტიმეტრებში"
+        />
       </div>
 
       <div class="form-group">
         <label>ქვეყანა *</label>
-        <input type="text" [(ngModel)]="country" placeholder="ქვეყანა">
+        <input type="text" [(ngModel)]="country" placeholder="ქვეყანა" />
       </div>
 
       <div class="form-group">
         <label>ფოტო URL</label>
-        <input type="text" [(ngModel)]="photoUrl" placeholder="ფოტოს ლინკი (არასავალდებულო)">
+        <input
+          type="text"
+          [(ngModel)]="photoUrl"
+          placeholder="ფოტოს ლინკი (არასავალდებულო)"
+        />
       </div>
 
       <div class="form-group full-width">
         <label>YouTube ვიდეო URL</label>
-        <input type="text" [(ngModel)]="videoUrl" placeholder="YouTube ლინკი (არასავალდებულო)">
+        <input
+          type="text"
+          [(ngModel)]="videoUrl"
+          placeholder="YouTube ლინკი (არასავალდებულო)"
+        />
       </div>
     </div>
 
@@ -46,34 +62,37 @@
 
   <!-- Players List -->
   <div class="players-section">
-    <h2>მოთამაშეები ({{filteredPlayers.length}})</h2>
+    <h2>მოთამაშეები ({{ filteredPlayers.length }})</h2>
 
     <div class="players-grid" *ngIf="filteredPlayers.length > 0">
       <div class="player-card" *ngFor="let player of filteredPlayers">
         <div class="player-image">
-          <img [src]="player.photoUrl" [alt]="player.name">
+          <img [src]="player.photoUrl" [alt]="player.name" />
         </div>
-        
+
         <div class="player-info">
-          <h3>{{player.name}}</h3>
-          
+          <h3>{{ player.name }}</h3>
+
           <div class="player-details">
-            <p><strong>ასაკი:</strong> {{player.age}}</p>
-            <p><strong>პოზიცია:</strong> {{player.position}}</p>
-            <p><strong>სიმაღლე:</strong> {{player.height}} სმ</p>
-            <p><strong>ქვეყანა:</strong> {{player.country}}</p>
+            <p><strong>ასაკი:</strong> {{ player.age }}</p>
+            <p><strong>პოზიცია:</strong> {{ player.position }}</p>
+            <p><strong>სიმაღლე:</strong> {{ player.height }} სმ</p>
+            <p><strong>ქვეყანა:</strong> {{ player.country }}</p>
           </div>
 
           <div class="video-container" *ngIf="player.videoUrl">
-            <iframe 
-              [src]="player.videoUrl | safeUrl" 
-              frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen>
+            <iframe
+              [src]="player.videoUrl | safeUrl"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            >
             </iframe>
           </div>
 
-          <button class="btn-delete" (click)="deletePlayer(player)">წაშლა</button>
+          <button class="btn-delete" (click)="deletePlayer(player)">
+            წაშლა
+          </button>
         </div>
       </div>
     </div>

@@ -1,11 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-eror',
-  standalone: false,
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './eror.component.html',
-  styleUrl: './eror.component.css'
+  styleUrls: ['./eror.component.css'],
 })
-export class ErorComponent {
-
-}
+export class ErorComponent {}

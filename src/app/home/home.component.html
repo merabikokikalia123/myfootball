@@ -1,13 +1,15 @@
 <div class="container mt-5">
-
   <h2 class="page-title mb-4">Latest Football News</h2>
   <div class="row g-3">
     <div class="col-md-4" *ngFor="let news of footballNews">
       <div class="card h-100">
-        <img [src]="news.imageUrl" class="card-img-top">
+        <img
+          [src]="news.imageUrl || defaultNewsImageUrl"
+          class="card-img-top"
+        />
         <div class="card-body">
           <h5 class="card-title">{{ news.title }}</h5>
-          <p class="card-text">{{ news.description }}</p>
+          <p class="card-text">{{ news.content }}</p>
         </div>
       </div>
     </div>
@@ -17,10 +19,13 @@
   <div class="row g-3">
     <div class="col-md-4" *ngFor="let news of judoNews">
       <div class="card h-100">
-        <img [src]="news.imageUrl" class="card-img-top">
+        <img
+          [src]="news.imageUrl || defaultNewsImageUrl"
+          class="card-img-top"
+        />
         <div class="card-body">
           <h5 class="card-title">{{ news.title }}</h5>
-          <p class="card-text">{{ news.description }}</p>
+          <p class="card-text">{{ news.content }}</p>
         </div>
       </div>
     </div>
@@ -30,10 +35,13 @@
   <div class="row g-3">
     <div class="col-md-4" *ngFor="let news of basketballNews">
       <div class="card h-100">
-        <img [src]="news.imageUrl" class="card-img-top">
+        <img
+          [src]="news.imageUrl || defaultNewsImageUrl"
+          class="card-img-top"
+        />
         <div class="card-body">
           <h5 class="card-title">{{ news.title }}</h5>
-          <p class="card-text">{{ news.description }}</p>
+          <p class="card-text">{{ news.content }}</p>
         </div>
       </div>
     </div>
@@ -43,19 +51,15 @@
   <div class="row g-3">
     <div class="col-md-4" *ngFor="let news of mmaNews">
       <div class="card h-100">
-        <img [src]="news.imageUrl" class="card-img-top">
+        <img
+          [src]="news.imageUrl || defaultNewsImageUrl"
+          class="card-img-top"
+        />
         <div class="card-body">
           <h5 class="card-title">{{ news.title }}</h5>
-          <p class="card-text">{{ news.description }}</p>
+          <p class="card-text">{{ news.content }}</p>
         </div>
       </div>
     </div>
   </div>
-
 </div>
-
-  
-
-
-
- 

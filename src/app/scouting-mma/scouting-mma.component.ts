@@ -3,17 +3,17 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PlayerService } from '../services/player.service'; // იგივე სერვისი Football-ისგან
 import { Player } from '../all-players/all-players.component';
-import { SafeUrlPipe } from "../all-players/safe-url.pipe";
+import { SafeUrlPipe } from '../all-players/safe-url.pipe';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-scouting-mma',
   standalone: true,
   imports: [CommonModule, FormsModule, SafeUrlPipe],
   templateUrl: './scouting-mma.component.html',
-  styleUrls: ['./scouting-mma.component.css']
+  styleUrls: ['./scouting-mma.component.css'],
 })
 export class ScoutingMmaComponent implements OnInit {
-
   fighters: Player[] = [];
   filteredFighters: Player[] = [];
 
@@ -30,15 +30,17 @@ export class ScoutingMmaComponent implements OnInit {
   photoUrl: string | undefined;
   videoUrl: string | undefined;
 
-  constructor(private playerService: PlayerService) {}
+  constructor(
+    private playerService: PlayerService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
-    // აქ შეიძლება მომხმარებლის როლი admin-ისთვის
-    this.isAdmin = localStorage.getItem('role') === 'admin';
+    this.isAdmin = this.authService.isAdmin();
 
     // load fighters from service
-    this.playerService.getPlayers().subscribe(players => {
-      this.fighters = players.filter(p => p.sport === 'MMA');
+    this.playerService.getPlayers().subscribe((players) => {
+      this.fighters = players.filter((p) => p.sport === 'MMA');
       this.filteredFighters = this.fighters;
     });
   }
@@ -56,28 +58,43 @@ export class ScoutingMmaComponent implements OnInit {
       sport: 'MMA',
       weightClass: this.weightClass,
       record: this.record,
-  
-       country: this.country,
+
+      country: this.country,
       photoUrl: this.photoUrl || 'https://via.placeholder.com/300',
-      videoUrl: this.videoUrl || 'https://www.youtube.com/embed/'
+      videoUrl: this.videoUrl || 'https://www.youtube.com/embed/',
     };
 
-    this.playerService.addPlayer(newFighter);
-
-    // reset ფორმი
-    this.name = '';
-    this.age = null;
-    this.weightClass = '';
-    this.record = '';
-    this.country = '';
+    this.playerService.addPlayer(newFighter).subscribe({
+      next: () => {
+        // reset ფორმი
+        this.name = '';
+        this.age = null;
+        this.weightClass = '';
+        this.record = '';
+        this.country = '';
+        this.photoUrl = undefined;
+        this.videoUrl = undefined;
+      },
+      error: (error) => {
+        alert(
+          error?.error?.message ||
+            'მებრძოლის დამატება ვერ მოხერხდა (შესაძლოა Admin იყოს საჭირო)'
+        );
+      },
+    });
   }
 
   // წაშლა
   deleteFighter(fighter: Player) {
-  
-
     if (confirm(`ნამდვილად გინდა ამ მებრძოლის "${fighter.name}" წაშლა?`)) {
-      this.playerService.deletePlayer(fighter);
+      this.playerService.deletePlayer(fighter).subscribe({
+        error: (error) => {
+          alert(
+            error?.error?.message ||
+              'წაშლა ვერ მოხერხდა (შესაძლოა Admin იყოს საჭირო)'
+          );
+        },
+      });
     }
   }
 
@@ -86,14 +103,19 @@ export class ScoutingMmaComponent implements OnInit {
     let data = this.fighters;
 
     if (this.weightClassFilter) {
-      data = data.filter(f =>
-        f.weightClass?.toLowerCase().includes(this.weightClassFilter.toLowerCase()) ?? false
+      data = data.filter(
+        (f) =>
+          f.weightClass
+            ?.toLowerCase()
+            .includes(this.weightClassFilter.toLowerCase()) ?? false
       );
     }
 
     if (this.recordFilter) {
-      data = data.filter(f =>
-        f.record?.toLowerCase().includes(this.recordFilter.toLowerCase()) ?? false
+      data = data.filter(
+        (f) =>
+          f.record?.toLowerCase().includes(this.recordFilter.toLowerCase()) ??
+          false
       );
     }
 

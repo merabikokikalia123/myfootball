@@ -1,14 +1,20 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { HttpService } from '../service/http.service';
 
 @Component({
   selector: 'app-forgot-password',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './forgotpass.component.html',
-  styleUrls: ['./forgotpass.component.css']
+  styleUrls: ['./forgotpass.component.css'],
 })
 export class ForgotPasswordComponent {
   forgotPasswordForm: FormGroup;
@@ -17,9 +23,9 @@ export class ForgotPasswordComponent {
   message = '';
   messageType: 'success' | 'error' | '' = '';
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private httpService: HttpService) {
     this.forgotPasswordForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]]
+      email: ['', [Validators.required, Validators.email]],
     });
   }
 
@@ -39,33 +45,20 @@ export class ForgotPasswordComponent {
     this.isLoading = true;
     const email = this.forgotPasswordForm.value.email;
 
-    // Simulate API call
-    setTimeout(() => {
-      this.isLoading = false;
-      this.messageType = 'success';
-      this.message = `პაროლის აღდგენის ინსტრუქცია გამოგზავნილია ${email}-ზე. გთხოვთ შეამოწმოთ თქვენი ელ. ფოსტა.`;
-      this.forgotPasswordForm.reset();
-      this.isSubmitted = false;
-    }, 1500);
-
-    // Real API call example (uncomment when ready):
-    /*
-    this.authService.forgotPassword(email).subscribe({
-      next: (response) => {
+    this.httpService.forgotPassword(email).subscribe({
+      next: () => {
         this.isLoading = false;
         this.messageType = 'success';
-        this.message = 'პაროლის აღდგენის ინსტრუქცია გამოგზავნილია თქვენს ელ. ფოსტაზე';
+        this.message = `პაროლის აღდგენის ინსტრუქცია გამოგზავნილია ${email}-ზე. გთხოვთ შეამოწმოთ თქვენი ელ. ფოსტა.`;
         this.forgotPasswordForm.reset();
         this.isSubmitted = false;
       },
       error: (error) => {
         this.isLoading = false;
         this.messageType = 'error';
-        this.message = error.error?.message || 'დაფიქსირდა შეცდომა. გთხოვთ სცადოთ თავიდან.';
-      }
+        this.message =
+          error?.error?.message || 'დაფიქსირდა შეცდომა. გთხოვთ სცადოთ თავიდან.';
+      },
     });
-    */
   }
 }
-
-

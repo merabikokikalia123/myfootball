@@ -8,7 +8,7 @@
         class="form-control"
         placeholder="Weight Class"
         [(ngModel)]="weightClassFilter"
-      >
+      />
     </div>
 
     <div class="col-md-4">
@@ -16,11 +16,13 @@
         class="form-control"
         placeholder="Record (e.g. 10-2)"
         [(ngModel)]="recordFilter"
-      >
+      />
     </div>
 
     <div class="col-md-4">
-      <button class="btn btn-dark w-100" (click)="filterFighters()">Filter</button>
+      <button class="btn btn-dark w-100" (click)="filterFighters()">
+        Filter
+      </button>
     </div>
   </div>
 
@@ -29,15 +31,42 @@
     <div class="card-body">
       <h5>Add MMA Fighter</h5>
 
-      <input class="form-control mb-2" placeholder="Name" [(ngModel)]="name">
-      <input type="number" class="form-control mb-2" placeholder="Age" [(ngModel)]="age">
-      <input class="form-control mb-2" placeholder="Weight Class" [(ngModel)]="weightClass">
-      <input class="form-control mb-2" placeholder="Record" [(ngModel)]="record">
-      <input class="form-control mb-2" placeholder="Country" [(ngModel)]="country">
-      <input class="form-control mb-2" placeholder="Photo URL" [(ngModel)]="photoUrl">
-      <input class="form-control mb-2" placeholder="YouTube Video URL" [(ngModel)]="videoUrl">
+      <input class="form-control mb-2" placeholder="Name" [(ngModel)]="name" />
+      <input
+        type="number"
+        class="form-control mb-2"
+        placeholder="Age"
+        [(ngModel)]="age"
+      />
+      <input
+        class="form-control mb-2"
+        placeholder="Weight Class"
+        [(ngModel)]="weightClass"
+      />
+      <input
+        class="form-control mb-2"
+        placeholder="Record"
+        [(ngModel)]="record"
+      />
+      <input
+        class="form-control mb-2"
+        placeholder="Country"
+        [(ngModel)]="country"
+      />
+      <input
+        class="form-control mb-2"
+        placeholder="Photo URL"
+        [(ngModel)]="photoUrl"
+      />
+      <input
+        class="form-control mb-2"
+        placeholder="YouTube Video URL"
+        [(ngModel)]="videoUrl"
+      />
 
-      <button class="btn btn-success w-100" (click)="addFighter()">➕ Add Fighter</button>
+      <button class="btn btn-success w-100" (click)="addFighter()">
+        ➕ Add Fighter
+      </button>
     </div>
   </div>
 
@@ -45,7 +74,12 @@
   <div class="row g-3">
     <div class="col-md-4" *ngFor="let fighter of filteredFighters">
       <div class="card h-100">
-        <img [src]="fighter.photoUrl" class="card-img-top" alt="{{fighter.name}}" *ngIf="fighter.photoUrl">
+        <img
+          [src]="fighter.photoUrl"
+          class="card-img-top"
+          alt="{{ fighter.name }}"
+          *ngIf="fighter.photoUrl"
+        />
         <div class="card-body">
           <h5>{{ fighter.name }}</h5>
           <p>Age: {{ fighter.age }}</p>
@@ -54,13 +88,19 @@
           <p>Country: {{ fighter.country }}</p>
 
           <div *ngIf="fighter.videoUrl">
-            <iframe [src]="fighter.videoUrl | safeUrl" frameborder="0" allowfullscreen width="100%" height="200"></iframe>
+            <iframe
+              [src]="fighter.videoUrl | safeUrl"
+              frameborder="0"
+              allowfullscreen
+              width="100%"
+              height="200"
+            ></iframe>
           </div>
 
           <button
-            
             class="btn btn-danger btn-sm mt-2 w-100"
-            (click)="deleteFighter(fighter)">
+            (click)="deleteFighter(fighter)"
+          >
             🗑 Delete
           </button>
         </div>
