@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiBaseUrl: '/api',
+  apiBaseUrl: 'https://myfootball-api.onrender.com/api',
 };
