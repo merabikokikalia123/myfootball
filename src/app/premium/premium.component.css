@@ -1,0 +1,250 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 40px 20px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.premium-container {
+  max-width: 600px;
+  margin: 0 auto 40px;
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  color: #667eea;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.header p {
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.message {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  color: white;
+  padding: 15px 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: 600;
+  animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.plans-grid {
+  display: flex;
+  justify-content: center;
+}
+
+.plan-card {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 16px;
+  padding: 30px;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+}
+
+.plan-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+}
+
+.plan-featured {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.plan-badge {
+  position: absolute;
+  top: -12px;
+  right: 20px;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  padding: 6px 20px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
+}
+
+.plan-price {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.plan-price span {
+  font-size: 1.2rem;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+.plan-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.plan-highlight {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 25px;
+  backdrop-filter: blur(10px);
+}
+
+.plan-highlight strong {
+  font-size: 1.1rem;
+}
+
+.plan-features {
+  list-style: none;
+  margin-bottom: 30px;
+}
+
+.plan-features li {
+  padding: 12px 0;
+  font-size: 1.05rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  transition: padding-left 0.3s ease;
+}
+
+.plan-features li:hover {
+  padding-left: 10px;
+}
+
+.plan-features li:last-child {
+  border-bottom: none;
+}
+
+.plan-btn {
+  width: 100%;
+  padding: 18px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-premium {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  box-shadow: 0 8px 25px rgba(245, 87, 108, 0.4);
+}
+
+.btn-premium:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(245, 87, 108, 0.6);
+}
+
+.btn-premium:active {
+  transform: translateY(-1px);
+}
+
+.whatsapp-contact {
+  max-width: 600px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.whatsapp-contact h3 {
+  font-size: 2rem;
+  color: #667eea;
+  margin-bottom: 15px;
+}
+
+.whatsapp-contact p {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.whatsapp-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: white;
+  padding: 18px 40px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+  margin-bottom: 20px;
+}
+
+.whatsapp-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(37, 211, 102, 0.6);
+}
+
+.whatsapp-number {
+  font-size: 1.1rem;
+  color: #666;
+  margin-top: 20px;
+}
+
+.whatsapp-number strong {
+  color: #25D366;
+  font-size: 1.3rem;
+}
+
+@media (max-width: 768px) {
+  .premium-container,
+  .whatsapp-contact {
+    padding: 25px;
+  }
+
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .plan-price {
+    font-size: 2.5rem;
+  }
+
+  .plan-name {
+    font-size: 1.5rem;
+  }
+}

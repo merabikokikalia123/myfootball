@@ -1,68 +1,79 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpService } from '../service/http.service';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { PlayerService } from '../services/player.service';
+
+export interface Player {
+  name: string;
+  age: number;
+  sport: string;
+  position?: string;
+  height?: number;
+  country?: string;
+  photoUrl?: string;
+  videoUrl?: string;
+  weightCategory?: string;
+  belt?: string;
+  weightClass?: string;
+  record?: string;
+}
 
 @Component({
   selector: 'app-all-players',
-  standalone: true,   // 🔴 ძალიან მნიშვნელოვანია
-  imports: [CommonModule, FormsModule], // 🔴 ngModel აქედან მუშაობს
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './all-players.component.html',
   styleUrls: ['./all-players.component.css']
 })
 export class AllPlayersComponent implements OnInit {
 
-  players: any[] = [];
+  players: Player[] = [];
+  filteredPlayers: Player[] = [];
 
-  footballPlayers: any[] = [];
-  judoPlayers: any[] = [];
-  basketballPlayers: any[] = [];
-  mmaPlayers: any[] = [];
-
-  sportFilter: string = '';
+  sportFilter = '';
   ageFilter: number | null = null;
-  positionFilter: string = '';
+  extraFilter = '';
 
-  constructor(private httpService: HttpService) {}
+  constructor(
+    private sanitizer: DomSanitizer,
+    private playerService: PlayerService
+  ) {}
 
   ngOnInit(): void {
-    this.loadPlayers();
-  }
-
-  loadPlayers(): void {
-    this.httpService.getAllPlayers().subscribe({
-      next: (data) => {
-        this.players = data;
-        this.splitBySport(this.players);
-      },
-      error: (err) => console.error(err)
+    this.playerService.getPlayers().subscribe(players => {
+      this.players = players;
+      this.filteredPlayers = players;
     });
   }
 
   applyFilter(): void {
-    let filtered = this.players;
+    this.filteredPlayers = this.players.filter(player => {
+      const sportMatch = this.sportFilter ? player.sport === this.sportFilter : true;
+      const ageMatch = this.ageFilter ? player.age === this.ageFilter : true;
+      const search = this.extraFilter.toLowerCase();
 
-    if (this.sportFilter) {
-      filtered = filtered.filter(p => p.sport === this.sportFilter);
-    }
+      const extraMatch = search ?
+        player.name.toLowerCase().includes(search) ||
+        (player.country?.toLowerCase().includes(search) ?? false) ||
+        (player.position?.toLowerCase().includes(search) ?? false)
+        : true;
 
-    if (this.ageFilter !== null) {
-      filtered = filtered.filter(p => p.age === this.ageFilter);
-    }
-
-    if (this.positionFilter) {
-      filtered = filtered.filter(p =>
-        p.position.toLowerCase().includes(this.positionFilter.toLowerCase())
-      );
-    }
-
-    this.splitBySport(filtered);
+      return sportMatch && ageMatch && extraMatch;
+    });
   }
 
-  splitBySport(players: any[]): void {
-    this.footballPlayers   = players.filter(p => p.sport === 'Football');
-    this.judoPlayers       = players.filter(p => p.sport === 'Judo');
-    this.basketballPlayers = players.filter(p => p.sport === 'Basketball');
-    this.mmaPlayers        = players.filter(p => p.sport === 'MMA');
+  getSportBadge(sport: string): string {
+    switch (sport) {
+      case 'Football': return 'bg-success';
+      case 'Basketball': return 'bg-primary';
+      case 'Judo': return 'bg-warning text-dark';
+      case 'MMA': return 'bg-danger';
+      default: return 'bg-secondary';
+    }
+  }
+
+  safeUrl(url: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 }

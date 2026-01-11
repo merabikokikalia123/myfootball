@@ -1,0 +1,202 @@
+/* MAIN CONTAINER */
+.container {
+  padding: 2rem 1rem;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+}
+
+/* PAGE TITLE */
+.container h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+  margin-bottom: 2rem;
+  animation: fadeInDown 0.6s ease;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* LOCK MESSAGE */
+.alert-warning {
+  background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%);
+  border: 3px solid #198754;
+  border-radius: 16px;
+  padding: 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #664d03;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.5s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.alert-warning .btn-dark {
+  margin-top: 1rem;
+  padding: 0.8rem 2.2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #198754 0%, #28a745 100%);
+  border: none;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+.alert-warning .btn-dark:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(25, 135, 84, 0.6);
+}
+
+/* FILTERS */
+.row.mb-4 {
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.6s ease 0.2s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-control {
+  height: 50px;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  font-size: 1rem;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.form-control:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 4px rgba(40, 167, 69, 0.2);
+}
+
+/* FILTER BUTTON */
+.btn-dark {
+  height: 50px;
+  border-radius: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #1c1c1c 0%, #343a40 100%);
+  transition: 0.3s;
+}
+
+.btn-dark:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* ADD PLAYER CARD */
+.card.mb-4 {
+  border-radius: 18px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: fadeInUp 0.6s ease 0.3s both;
+}
+
+.card.mb-4 .card-body {
+  padding: 2rem;
+}
+
+.card.mb-4 h5 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #198754;
+  margin-bottom: 1.5rem;
+}
+
+.card.mb-4 h5::before {
+  content: '⚽ ';
+}
+
+/* ADD BUTTON */
+.btn-success {
+  height: 50px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #198754 0%, #20c997 100%);
+  border: none;
+  transition: 0.3s;
+}
+
+.btn-success:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(25, 135, 84, 0.6);
+}
+
+/* PLAYER CARDS */
+.row.g-3 .card {
+  border-radius: 16px;
+  border: none;
+  height: 100%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: 0.4s;
+  position: relative;
+}
+
+.row.g-3 .card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #198754, #20c997);
+}
+
+.row.g-3 .card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.25);
+}
+
+.row.g-3 h5 {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.row.g-3 p {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #6c757d;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .container h2 {
+    font-size: 1.8rem;
+  }
+
+  .form-control,
+  .btn-dark,
+  .btn-success {
+    height: 45px;
+    font-size: 0.95rem;
+  }
+}

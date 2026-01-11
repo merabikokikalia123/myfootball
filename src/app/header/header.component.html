@@ -1,8 +1,10 @@
-<p>header works!</p>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
 
-    <a class="navbar-brand" routerLink="/home">⚽ Football Page</a>
+     <a class="navbar-brand" routerLink="/home">
+      <img src="/src/app/header/f5b2379d-d8f5-4ca4-b7cb-b300bc18c2dc.jpg" alt="SportsScout" height="40">
+    </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
       data-bs-target="#navbarNav">
@@ -17,18 +19,18 @@
         </li>
 
         <!-- SCOUTING DROPDOWN -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" role="button"
-             data-bs-toggle="dropdown">
-            Scouting
-          </a>
-          <ul class="dropdown-menu dropdown-menu-dark">
-            <li><a class="dropdown-item" routerLink="/scouting-football">⚽ Football</a></li>
-            <li><a class="dropdown-item" routerLink="/scouting-judo">🥋 Judo</a></li>
-            <li><a class="dropdown-item" routerLink="/scouting-basketball">🏀 Basketball</a></li>
-            <li><a class="dropdown-item" routerLink="/scouting-mma">🥊 MMA</a></li>
-          </ul>
-        </li>
+       <li class="nav-item dropdown" *ngIf="isAdmin">
+  <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
+    Scouting
+  </a>
+  <ul class="dropdown-menu dropdown-menu-dark">
+    <li><a class="dropdown-item" routerLink="/scouting-football">⚽ Football</a></li>
+    <li><a class="dropdown-item" routerLink="/scouting-judo">🥋 Judo</a></li>
+    <li><a class="dropdown-item" routerLink="/scouting-basketball">🏀 Basketball</a></li>
+    <li><a class="dropdown-item" routerLink="/scouting-mma">🥊 MMA</a></li>
+  </ul>
+</li>
+
 
         <li class="nav-item">
           <a class="nav-link" routerLink="/profile">My Profile</a>
@@ -47,14 +49,10 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" routerLink="/premium">Buy Premium</a>
+          <a class="nav-link" routerLink="/premium">Add players</a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link logout-btn" href="#" (click)="$event.preventDefault()">
-            Logout
-          </a>
-        </li>
+       
 
       </ul>
     </div>

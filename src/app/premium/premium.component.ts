@@ -9,26 +9,41 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./premium.component.css']
 })
 export class PremiumComponent {
-
   message: string = '';
-  showDashboard = false;
+  showMessage: boolean = false;
 
-  selectPlan(
-    planName: string,
-    price: number,
-    playerLimit: number,
-    editDays: number
-  ) {
-    this.message = `არჩეულია ${planName} პაკეტი ($${price}/თვე)`;
-    this.showDashboard = true;
+  // WhatsApp configurations
+  whatsappNumber: string = '995551009844';
+  whatsappMessage: string = 'გამარჯობა, მინდა 1 მოთამაშის დამატება 25 ლარად';
 
-    console.log({
-      planName,
-      price,
-      playerLimit,
-      editDays
-    });
+  constructor() {}
 
-    // აქ მერე API-ს მიაბამ
+  /**
+   * Buy player slot functionality
+   */
+  buyPlayerSlot(): void {
+    this.showMessage = true;
+    this.message = 'თქვენი მოთხოვნა მუშავდება... გთხოვთ დაელოდოთ!';
+    
+    // After 2 seconds, show success message
+    setTimeout(() => {
+      this.message = '✅ წარმატებით! WhatsApp-ზე დაგვიკავშირდით გადახდისთვის.';
+    }, 2000);
+
+    // Hide message after 7 seconds
+    setTimeout(() => {
+      this.showMessage = false;
+      this.message = '';
+    }, 7000);
+  }
+
+  /**
+   * Get WhatsApp link
+   */
+  getWhatsAppLink(): string {
+    const encodedMessage = encodeURIComponent(this.whatsappMessage);
+    return `https://wa.me/${this.whatsappNumber}?text=${encodedMessage}`;
   }
 }
+
+

@@ -1,53 +1,95 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { SafeUrlPipe } from "../all-players/safe-url.pipe";
+import { PlayerService } from '../services/player.service';
+import { Player } from '../all-players/all-players.component';
 
 @Component({
   selector: 'app-scouting-judo',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, SafeUrlPipe],
   templateUrl: './scouting-judo.component.html',
   styleUrls: ['./scouting-judo.component.css']
 })
 export class ScoutingJudoComponent implements OnInit {
 
-  isPremium = false; // 🔐 backend/auth-ით შეცვლი
+  players: Player[] = [];
+  filteredPlayers: Player[] = [];
 
-  athletes: any[] = [];
-  filteredAthletes: any[] = [];
+  // form fields
+  name = '';
+  age: number | null = null;
+  weight: number | null = null;
+  belt = '';
+  country = '';
+  photoUrl = '';
+  videoUrl = '';
+  isAdmin = false;
 
-  weightFilter: number | null = null;
-  beltFilter: string = '';
+  constructor(private playerService: PlayerService) {}
 
   ngOnInit(): void {
-    this.filteredAthletes = this.athletes;
+    this.isAdmin = localStorage.getItem('role') === 'admin';
+
+    // load all Judo athletes from PlayerService
+    this.playerService.getPlayers().subscribe(players => {
+      this.players = players.filter(p => p.sport === 'Judo');
+      this.filteredPlayers = this.players;
+    });
   }
 
-  filterAthletes(): void {
-    let data = this.athletes;
-
-    if (this.weightFilter !== null) {
-      data = data.filter(a => a.weight === this.weightFilter);
+  // Add Judo athlete
+  addAthlete() {
+    if (!this.name || !this.age || !this.weight || !this.belt) {
+      alert('ყველა ველი სავალდებულოა');
+      return;
     }
 
-    if (this.beltFilter) {
-      data = data.filter(a =>
-        a.belt.toLowerCase().includes(this.beltFilter.toLowerCase())
-      );
-    }
-
-    this.filteredAthletes = data;
-  }
-
-  addAthlete(): void {
-    const athlete = {
-      name: '',
-      age: null,
-      weight: null,
-      belt: ''
+    const newAthlete: Player = {
+      name: this.name,
+      age: this.age,
+      sport: 'Judo',
+      weightCategory: this.weight?.toString(),
+      belt: this.belt,
+      country: this.country || 'Unknown',
+      photoUrl: this.photoUrl || 'https://via.placeholder.com/300',
+      videoUrl: this.videoUrl || 'https://www.youtube.com/embed/'
     };
 
-    this.athletes.push(athlete);
-    this.filteredAthletes = this.athletes;
+    this.playerService.addPlayer(newAthlete);
+
+    // reset form
+    this.name = '';
+    this.age = null;
+    this.weight = null;
+    this.belt = '';
+    this.country = '';
+    this.photoUrl = '';
+    this.videoUrl = '';
+  }
+
+  // Delete Judo athlete
+  deleteAthlete(player: Player) {
+   
+
+    if (confirm(`ნამდვილად გინდა ამ მოთამაშის "${player.name}" წაშლა?`)) {
+      this.playerService.deletePlayer(player);
+    }
+  }
+
+  // Filter (optional)
+  filterAthletes(weightFilter?: number, beltFilter?: string) {
+    let data = this.players;
+
+    if (weightFilter !== undefined && weightFilter !== null) {
+      data = data.filter(p => p.weightCategory == weightFilter.toString());
+    }
+
+    if (beltFilter) {
+      data = data.filter(p => p.belt?.toLowerCase().includes(beltFilter.toLowerCase()) ?? false);
+    }
+
+    this.filteredPlayers = data;
   }
 }

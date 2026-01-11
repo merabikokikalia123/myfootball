@@ -4,7 +4,6 @@ import { ErorComponent } from './eror/eror.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-
   { path: 'home', component: HomeComponent },
 
   {
@@ -19,6 +18,13 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./login/login.component')
         .then(m => m.LoginComponent)
+  },
+
+  {
+    path: 'forgot-password',
+    loadComponent: () =>
+      import('./forgotpass/forgotpass.component')
+        .then(m => m.ForgotPasswordComponent)
   },
 
   {

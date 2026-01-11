@@ -1,0 +1,156 @@
+/* Navbar Base Styles */
+.navbar {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  padding: 0.75rem 0;
+}
+
+.navbar-brand {
+  font-weight: 600;
+  font-size: 1.25rem;
+  transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+  color: #4CAF50 !important;
+}
+
+/* Navigation Links */
+.nav-link {
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+  position: relative;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  color: #4CAF50 !important;
+  transform: translateY(-2px);
+}
+
+.nav-link.active {
+  color: #4CAF50 !important;
+}
+
+/* Animated underline effect for nav links */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #4CAF50;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 80%;
+}
+
+/* Dropdown Styles */
+.dropdown-menu {
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  margin-top: 0.5rem;
+}
+
+.dropdown-item {
+  padding: 0.75rem 1.5rem;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.dropdown-item:hover {
+  background-color: #4CAF50;
+  color: white !important;
+  transform: translateX(5px);
+}
+
+/* Logout Button Special Style */
+.logout-btn {
+  color: #ff6b6b !important;
+}
+
+.logout-btn:hover {
+  color: #ff5252 !important;
+  background-color: rgba(255, 107, 107, 0.1);
+  border-radius: 4px;
+}
+
+/* Mobile Styles */
+@media (max-width: 991px) {
+  .navbar-collapse {
+    margin-top: 1rem;
+    background-color: rgba(52, 58, 64, 0.95);
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  .nav-item {
+    margin: 0.25rem 0;
+  }
+
+  .nav-link {
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+  }
+
+  .nav-link:hover {
+    background-color: rgba(76, 175, 80, 0.2);
+    transform: none;
+  }
+
+  .dropdown-menu {
+    background-color: rgba(33, 37, 41, 0.95);
+    border-left: 3px solid #4CAF50;
+    margin-left: 1rem;
+  }
+
+  .dropdown-item {
+    padding: 0.5rem 1rem;
+  }
+
+  /* Remove the underline animation on mobile */
+  .nav-link::after {
+    display: none;
+  }
+
+  /* Mobile toggler animation */
+  .navbar-toggler {
+    border: none;
+    padding: 0.5rem;
+  }
+
+  .navbar-toggler:focus {
+    box-shadow: none;
+    outline: 2px solid #4CAF50;
+  }
+
+  .navbar-toggler-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+/* Smooth transitions for collapse */
+.navbar-collapse {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Extra small devices optimization */
+@media (max-width: 576px) {
+  .navbar-brand {
+    font-size: 1.1rem;
+  }
+
+  .nav-link {
+    font-size: 0.95rem;
+  }
+
+  .dropdown-item {
+    font-size: 0.9rem;
+  }
+}

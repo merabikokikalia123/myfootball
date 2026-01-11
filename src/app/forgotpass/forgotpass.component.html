@@ -1,1 +1,48 @@
-<p>forgotpass works!</p>
+
+<div class="forgot-password-container">
+  <div class="forgot-password-box">
+    <h2>პაროლის აღდგენა</h2>
+    <p class="subtitle">შეიყვანეთ თქვენი ელ. ფოსტა და ჩვენ გამოგიგზავნით პაროლის აღდგენის ინსტრუქციას</p>
+    
+    <form [formGroup]="forgotPasswordForm" (ngSubmit)="onSubmit()">
+      <div class="input-group" 
+           [class.invalid]="isSubmitted && f['email'].errors"
+           [class.valid]="isSubmitted && !f['email'].errors && f['email'].value">
+        <label for="email">ელ. ფოსტა</label>
+        <input 
+          type="email" 
+          id="email" 
+          formControlName="email"
+          placeholder="example@mail.com"
+          [class.error]="isSubmitted && f['email'].errors">
+        
+        <span class="error-text" *ngIf="isSubmitted && f['email'].errors?.['required']">
+          ელ. ფოსტა აუცილებელია
+        </span>
+        <span class="error-text" *ngIf="isSubmitted && f['email'].errors?.['email']">
+          შეიყვანეთ სწორი ელ. ფოსტა
+        </span>
+      </div>
+
+      <button 
+        type="submit" 
+        class="submit-btn"
+        [class.loading]="isLoading"
+        [disabled]="isLoading">
+        {{ isLoading ? '' : 'გაგზავნა' }}
+      </button>
+
+      <div id="message" 
+           *ngIf="message" 
+           [class.success]="messageType === 'success'"
+           [class.error]="messageType === 'error'">
+        {{ message }}
+      </div>
+    </form>
+
+    <div class="links">
+      <a routerLink="/login">← დაბრუნება შესვლაში</a>
+      <a routerLink="/register">ახალი ანგარიში</a>
+    </div>
+  </div>
+</div>

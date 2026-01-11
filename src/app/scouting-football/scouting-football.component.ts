@@ -1,52 +1,76 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { SafeUrlPipe } from "../all-players/safe-url.pipe";
+import { PlayerService } from '../services/player.service';
+import { Player } from '../all-players/all-players.component';
 
 @Component({
   selector: 'app-scouting-football',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, SafeUrlPipe],
   templateUrl: './scouting-football.component.html',
   styleUrls: ['./scouting-football.component.css']
 })
-export class ScoutingFootballComponent {
+export class ScoutingFootballComponent implements OnInit {
+addPlayer() {
+throw new Error('Method not implemented.');
+}
 
-  isPremium = false; // ← აქ მერე backend/auth-ით შეცვლი
+  players: Player[] = [];
+  filteredPlayers: Player[] = [];
 
-  players: any[] = [];
-  filteredPlayers: any[] = [];
+  // form fields
+  name = '';
+  age: number | null = null;
+  position = '';
+  height: number | null = null;
+  photoUrl = '';
+  videoUrl = '';
+  country = '';
 
-  ageFilter: number | null = null;
-  positionFilter: string = '';
+  constructor(private playerService: PlayerService) {}
 
   ngOnInit() {
-    this.filteredPlayers = this.players;
+    // აბონენტი ფეხბურთელებზე
+    this.playerService.getPlayers().subscribe(players => {
+      this.players = players.filter(p => p.sport === 'Football');
+      this.filteredPlayers = this.players;
+    });
   }
 
-  filterPlayers() {
-    let data = this.players;
-
-    if (this.ageFilter !== null) {
-      data = data.filter(p => p.age === this.ageFilter);
+  buyPlayerSlot() {
+    if (!this.name || !this.age || !this.position || !this.country) {
+      alert('ყველა ველი სავალდებულოა');
+      return;
     }
 
-    if (this.positionFilter) {
-      data = data.filter(p =>
-        p.position.toLowerCase().includes(this.positionFilter.toLowerCase())
-      );
-    }
-
-    this.filteredPlayers = data;
-  }
-
-  addPlayer() {
-    const newPlayer = {
-      name: '',
-      age: null,
-      position: ''
+    const newPlayer: Player = {
+      name: this.name,
+      age: this.age,
+      sport: 'Football',
+      position: this.position,
+      height: this.height ?? 180,
+      country: this.country,
+      photoUrl: this.photoUrl || 'https://via.placeholder.com/300',
+      videoUrl: this.videoUrl || 'https://www.youtube.com/embed/'
     };
 
-    this.players.push(newPlayer);
-    this.filteredPlayers = this.players;
+    this.playerService.addPlayer(newPlayer);
+
+    // ფორმის reset
+    this.name = '';
+    this.age = null;
+    this.position = '';
+    this.height = null;
+    this.photoUrl = '';
+    this.videoUrl = '';
+    this.country = '';
+  }
+
+  deletePlayer(player: Player) {
+    if (confirm(`ნამდვილად გინდა ამ მოთამაშის "${player.name}" წაშლა?`)) {
+      this.playerService.deletePlayer(player);
+    }
   }
 }

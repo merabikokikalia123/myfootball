@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -20,12 +21,24 @@ export class ProfileComponent implements OnInit {
     photo: 'https://via.placeholder.com/120'
   };
 
+  isLoggedIn: boolean = false;
+
+  constructor(private router: Router) {}
+
   ngOnInit(): void {
+    this.isLoggedIn = !!localStorage.getItem('token');
+
+    if (!this.isLoggedIn) {
+      // მომხმარებელი არ არის შემოსული
+      alert('You are not logged in!');
+      this.router.navigate(['/login']); // გადამისამართება login გვერდზე
+      return;
+    }
+
     this.loadProfile();
   }
 
   loadProfile(): void {
-    // 🔐 აქ რეალურად backend API უნდა იყოს
     this.user = {
       firstName: 'Giorgi',
       lastName: 'Kikalia',
@@ -37,13 +50,11 @@ export class ProfileComponent implements OnInit {
   }
 
   updateProfile(): void {
-    // 🔄 API call
     console.log('Updated profile:', this.user);
     alert('Profile updated successfully');
   }
 
   buyPremium(): void {
-    // 💳 გადახდის გვერდზე გადამისამართება
     alert('Redirecting to Premium purchase...');
   }
 
