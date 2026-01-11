@@ -1,58 +1,68 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">My Profile</h2>
 
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card profile-card">
+        <div class="card-body text-center">
+          <img
+            [src]="user.photo"
+            alt="Profile photo"
+            class="rounded-circle mb-3"
+            width="120"
+            height="120"
+          />
 
-  <div class="container mt-5">
-    <h2 class="text-center mb-4">My Profile</h2>
+          <h4>{{ fullName || 'User' }}</h4>
+          <p class="text-muted">{{ user.email }}</p>
 
-    <div class="row justify-content-center">
-      <div class="col-md-6">
+          <div class="premium-box mt-2">
+            <span
+              class="badge"
+              [ngClass]="user.isPremium ? 'bg-success' : 'bg-secondary'"
+            >
+              {{ user.isPremium ? 'Premium User' : 'Free User' }}
+            </span>
+          </div>
 
-        <div class="card profile-card">
-          <div class="card-body text-center">
+          <hr />
 
-            
+          <!-- UPDATE FORM -->
+          <div class="text-start">
+            <label class="form-label">First Name</label>
+            <input class="form-control" [(ngModel)]="user.firstName" />
 
-            <h4>{{ fullName }}</h4>
-            <p class="text-muted">{{ user.email }}</p>
+            <label class="form-label mt-2">Last Name</label>
+            <input class="form-control" [(ngModel)]="user.lastName" />
 
-            <div class="premium-box mt-2">
-              <span
-                class="badge"
-                [ngClass]="user.isPremium ? 'bg-success' : 'bg-secondary'"
-              >
-                {{ user.isPremium ? 'Premium User' : 'Free User' }}
-              </span>
-            </div>
+            <label class="form-label mt-2">Phone</label>
+            <input class="form-control" [(ngModel)]="user.phone" />
 
-            <hr>
+            <label class="form-label mt-2">Photo URL</label>
+            <input class="form-control" [(ngModel)]="user.photo" />
 
-            <!-- UPDATE FORM -->
-            <div class="text-start">
-              <label class="form-label">First Name</label>
-              <input class="form-control" [(ngModel)]="user.firstName">
+            <button
+              class="btn btn-primary w-100 mt-3"
+              type="button"
+              (click)="updateProfile()"
+            >
+              Update Profile
+            </button>
 
-              <label class="form-label mt-2">Last Name</label>
-              <input class="form-control" [(ngModel)]="user.lastName">
-
-              <label class="form-label mt-2">Phone</label>
-              <input class="form-control" [(ngModel)]="user.phone">
-
-              <button
-                class="btn btn-primary w-100 mt-3"
-                (click)="updateProfile()"
-              >
-                Update Profile
-              </button>
-            </div>
-
-           
-            </div>
-
+            <button
+              class="btn btn-outline-danger w-100 mt-2"
+              type="button"
+              (click)="logout()"
+            >
+              Logout
+            </button>
           </div>
         </div>
-
       </div>
     </div>
-  
+  </div>
+</div>
+
 
 
 
