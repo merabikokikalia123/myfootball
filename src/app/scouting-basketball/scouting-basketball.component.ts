@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { PlayerService } from '../services/player.service';
 import { Player } from '../all-players/all-players.component';
 import { SafeUrlPipe } from '../all-players/safe-url.pipe';
+import { toYoutubeEmbedUrl } from '../shared/youtube';
 
 @Component({
   selector: 'app-scouting-basketball',
@@ -55,7 +56,7 @@ export class ScoutingBasketballComponent implements OnInit {
       height: this.height,
       country: this.country,
       photoUrl: this.photoUrl || 'https://via.placeholder.com/300',
-      videoUrl: this.formatYoutubeUrl(this.videoUrl),
+      videoUrl: toYoutubeEmbedUrl(this.videoUrl) || undefined,
     };
 
     this.playerService.addPlayer(player).subscribe({
@@ -89,11 +90,5 @@ export class ScoutingBasketballComponent implements OnInit {
         },
       });
     }
-  }
-
-  private formatYoutubeUrl(url: string): string {
-    if (!url) return '';
-    const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&]+)/);
-    return match ? 'https://www.youtube.com/embed/' + match[1] : '';
   }
 }

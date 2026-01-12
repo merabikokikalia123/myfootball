@@ -5,6 +5,7 @@ import { SafeUrlPipe } from '../all-players/safe-url.pipe';
 import { PlayerService } from '../services/player.service';
 import { Player } from '../all-players/all-players.component';
 import { AuthService } from '../services/auth.service';
+import { toYoutubeEmbedUrl } from '../shared/youtube';
 
 @Component({
   selector: 'app-scouting-judo',
@@ -57,7 +58,7 @@ export class ScoutingJudoComponent implements OnInit {
       belt: this.belt,
       country: this.country || 'Unknown',
       photoUrl: this.photoUrl || 'https://via.placeholder.com/300',
-      videoUrl: this.videoUrl || 'https://www.youtube.com/embed/',
+      videoUrl: toYoutubeEmbedUrl(this.videoUrl) || undefined,
     };
 
     this.playerService.addPlayer(newAthlete).subscribe({

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { SafeUrlPipe } from '../all-players/safe-url.pipe';
 import { PlayerService } from '../services/player.service';
 import { Player } from '../all-players/all-players.component';
+import { toYoutubeEmbedUrl } from '../shared/youtube';
 
 @Component({
   selector: 'app-scouting-football',
@@ -49,7 +50,7 @@ export class ScoutingFootballComponent implements OnInit {
       height: this.height ?? 180,
       country: this.country,
       photoUrl: this.photoUrl || 'https://via.placeholder.com/300',
-      videoUrl: this.videoUrl || 'https://www.youtube.com/embed/',
+      videoUrl: toYoutubeEmbedUrl(this.videoUrl) || undefined,
     };
 
     this.playerService.addPlayer(newPlayer).subscribe({

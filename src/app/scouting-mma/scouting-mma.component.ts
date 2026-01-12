@@ -5,6 +5,7 @@ import { PlayerService } from '../services/player.service'; // იგივე �
 import { Player } from '../all-players/all-players.component';
 import { SafeUrlPipe } from '../all-players/safe-url.pipe';
 import { AuthService } from '../services/auth.service';
+import { toYoutubeEmbedUrl } from '../shared/youtube';
 
 @Component({
   selector: 'app-scouting-mma',
@@ -61,7 +62,7 @@ export class ScoutingMmaComponent implements OnInit {
 
       country: this.country,
       photoUrl: this.photoUrl || 'https://via.placeholder.com/300',
-      videoUrl: this.videoUrl || 'https://www.youtube.com/embed/',
+      videoUrl: toYoutubeEmbedUrl(this.videoUrl) || undefined,
     };
 
     this.playerService.addPlayer(newFighter).subscribe({
