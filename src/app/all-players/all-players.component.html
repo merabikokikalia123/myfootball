@@ -94,7 +94,12 @@
             >
           </p>
 
-          <div *ngIf="player.videoUrl" class="player-video">
+          <div
+            *ngIf="
+              player.videoUrl && !player.videoUrl.endsWith('youtube.com/embed/')
+            "
+            class="player-video"
+          >
             <iframe
               [src]="safeUrl(player.videoUrl)"
               frameborder="0"

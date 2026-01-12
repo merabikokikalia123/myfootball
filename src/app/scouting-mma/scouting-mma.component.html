@@ -87,7 +87,12 @@
           <p>Record: {{ fighter.record }}</p>
           <p>Country: {{ fighter.country }}</p>
 
-          <div *ngIf="fighter.videoUrl">
+          <div
+            *ngIf="
+              fighter.videoUrl &&
+              !fighter.videoUrl.endsWith('youtube.com/embed/')
+            "
+          >
             <iframe
               [src]="fighter.videoUrl | safeUrl"
               frameborder="0"

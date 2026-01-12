@@ -59,7 +59,12 @@
           <p>Belt: {{ athlete.belt }}</p>
           <p>Country: {{ athlete.country }}</p>
 
-          <div *ngIf="athlete.videoUrl">
+          <div
+            *ngIf="
+              athlete.videoUrl &&
+              !athlete.videoUrl.endsWith('youtube.com/embed/')
+            "
+          >
             <iframe
               [src]="athlete.videoUrl | safeUrl"
               frameborder="0"

@@ -80,7 +80,12 @@
             <p><strong>ქვეყანა:</strong> {{ player.country }}</p>
           </div>
 
-          <div class="video-container" *ngIf="player.videoUrl">
+          <div
+            class="video-container"
+            *ngIf="
+              player.videoUrl && !player.videoUrl.endsWith('youtube.com/embed/')
+            "
+          >
             <iframe
               [src]="player.videoUrl | safeUrl"
               frameborder="0"

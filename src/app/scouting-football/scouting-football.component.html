@@ -64,7 +64,7 @@
         <p>Height: {{ p.height }} cm</p>
         <p>Country: {{ p.country }}</p>
 
-        <div *ngIf="p.videoUrl">
+        <div *ngIf="p.videoUrl && !p.videoUrl.endsWith('youtube.com/embed/')">
           <iframe
             [src]="p.videoUrl | safeUrl"
             frameborder="0"
