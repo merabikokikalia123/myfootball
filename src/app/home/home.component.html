@@ -1,118 +1,65 @@
- <div class="container">
+<div class="container">
 
-  <!-- Header -->
-  <div class="header text-center mb-5">
-    <h1>🏆 Sports News /სპორტული სიახლეები 
-</h1>
-    <p>Your ultimate source for sports updates/თქვენი საუკეთესო წყარო სპორტული სიახლეებისთვის</p>
-  </div>
-
-  <!-- Add News Form (Admin Only) -->
-  <div *ngIf="isAdmin" class="add-news-section card mb-5 p-3">
-    <h2>Add New News</h2>
-    <form (ngSubmit)="addNews()" #newsForm="ngForm">
-      <div class="form-group mb-3">
-        <label for="title">Title</label>
-        <input 
-          type="text" 
-          id="title" 
-          class="form-control" 
-          placeholder="Enter news title..." 
-          [(ngModel)]="newNews.title" 
-          name="title" 
-          required
-        >
-      </div>
-
-      <div class="form-group mb-3">
-        <label for="content">Content</label>
-        <textarea 
-          id="content" 
-          class="form-control" 
-          placeholder="Write your news content..." 
-          [(ngModel)]="newNews.content" 
-          name="content" 
-          required
-          rows="3"
-        ></textarea>
-      </div>
-
-      <div class="form-group mb-3">
-        <label for="category">Category</label>
-        <select 
-          id="category" 
-          class="form-control" 
-          [(ngModel)]="newNews.category" 
-          name="category" 
-          required
-        >
-          <option value="">Select category</option>
-          <option *ngFor="let cat of categories" [value]="cat">{{ getCategoryDisplayName(cat) }}</option>
-        </select>
-      </div>
-
-      <div class="form-group mb-3">
-        <label for="imageUrl">Image URL (optional)</label>
-        <input 
-          type="url" 
-          id="imageUrl" 
-          class="form-control" 
-          placeholder="https://example.com/image.jpg"
-          [(ngModel)]="newNews.imageUrl"
-          name="imageUrl"
-        >
-      </div>
-
-      <button type="submit" class="btn btn-primary" [disabled]="newsForm.invalid">Add News</button>
-    </form>
-  </div>
+  <!-- Hero Header -->
+  <section class="hero-section text-center mb-5 p-5 rounded shadow-sm">
+    <h1 class="display-4 fw-bold">🏆 Sports News / სპორტული სიახლეები</h1>
+    <p class="lead mt-3">
+      Your ultimate source for sports updates / თქვენი საუკეთესო წყარო სპორტული სიახლეებისთვის
+    </p>
+  </section>
 
   <!-- News Categories -->
   <div *ngFor="let category of categories" class="category-section mb-5">
-    <h2 class="category-title mb-3">
-      {{ getCategoryIcon(category) }} Latest {{ getCategoryDisplayName(category) }} News
+    
+    <!-- Category Title -->
+    <h2 class="section-heading mb-4">
+      {{ getCategoryIcon(category) }} {{ getCategoryDisplayName(category) }} News
     </h2>
 
-    <div class="news-grid row g-3">
+    <div class="row g-4">
       <ng-container *ngIf="hasCategoryNews(category); else emptyState">
-        <div class="col-md-4" *ngFor="let news of getCategoryNews(category)">
-          <div class="card h-100">
-            <img 
-              [src]="news.imageUrl || defaultNewsImageUrl" 
-              class="card-img-top" 
-              [alt]="news.title"
-            />
-            <div class="card-body">
-              <h5 class="card-title">{{ news.title }}</h5>
-              <p class="card-text">{{ news.content }}</p>
-              <small class="text-muted">{{ news.date | date:'medium' }}</small>
-              
-              <!-- Admin controls -->
-              <div *ngIf="isAdmin" class="mt-2 d-flex gap-2">
-                <button class="btn btn-sm btn-warning" (click)="updateNews(news)">Edit</button>
-                <button class="btn btn-sm btn-danger" (click)="deleteNews(news.id!, news.category)">Delete</button>
+        
+        <div class="col-lg-4 col-md-6" *ngFor="let news of getCategoryNews(category)">
+          <div class="news-card shadow-sm h-100">
+            
+            <div class="news-image">
+              <img 
+                [src]="news.imageUrl || defaultNewsImageUrl"
+                [alt]="news.title"
+              />
+            </div>
+
+            <div class="news-content p-3">
+              <h5 class="news-title fw-semibold">{{ news.title }}</h5>
+              <p class="news-text">{{ news.content }}</p>
+              <div class="news-date text-muted small">
+                {{ news.date | date:'medium' }}
               </div>
             </div>
+
           </div>
         </div>
+
       </ng-container>
 
       <!-- Empty state -->
       <ng-template #emptyState>
-        <div class="col-12 text-center p-5 border rounded">
-          <div class="empty-state-icon fs-1">📰</div>
-          <div class="empty-state-text">No {{ getCategoryDisplayName(category) }} news yet</div>
+        <div class="col-12 text-center empty-state p-5">
+          <div class="fs-1">📰</div>
+          <p class="mt-3">No {{ getCategoryDisplayName(category) }} news yet</p>
         </div>
       </ng-template>
     </div>
+
   </div>
 </div>
-<div class="about-section card mb-5 p-4 text-center">
-  <h2 class="mb-3">🎯 About This Website / საიტის დანიშნულება</h2>
 
-  <p class="lead">
-    This platform is created to deliver the latest and most reliable sports news
-    in one place.
+<!-- About Section -->
+<section class="about-section mt-5 p-5 shadow-sm rounded text-center">
+  <h2 class="fw-bold mb-3">🎯 About This Website / საიტის დანიშნულება</h2>
+
+  <p class="lead mb-4">
+    This platform is created to deliver the latest and most reliable sports news in one place.
   </p>
 
   <p>
@@ -126,9 +73,9 @@
     და ყველა იმ ადამიანისთვის, ვისაც სპორტი უყვარს.
   </p>
 
-  <div class="mt-3">
-    <span class="badge bg-primary me-2">Fast Updates</span>
-    <span class="badge bg-success me-2">Trusted Sources</span>
-    <span class="badge bg-warning text-dark">All Sports in One Place</span>
+  <div class="mt-4">
+    <span class="badge bg-primary me-2 p-2">Fast Updates</span>
+    <span class="badge bg-success me-2 p-2">Trusted Sources</span>
+    <span class="badge bg-warning text-dark p-2">All Sports in One Place</span>
   </div>
-</div>
+</section>
