@@ -1,7 +1,7 @@
-/* Global Styles */
+/* Global Styles - Classic Sports Premium */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #0a0e27;
+  background: #0d0d0d;
   min-height: 100vh;
   padding: 20px 0;
   position: relative;
@@ -15,9 +15,9 @@ body::before {
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 20% 50%, rgba(138, 43, 226, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(0, 191, 255, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 40% 20%, rgba(255, 20, 147, 0.15) 0%, transparent 50%);
+    radial-gradient(circle at 20% 50%, rgba(27, 94, 32, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 40% 20%, rgba(192, 192, 192, 0.06) 0%, transparent 50%);
   pointer-events: none;
   z-index: 0;
 }
@@ -32,25 +32,28 @@ body::before {
 
 /* Hero Section */
 .hero-section {
-  background: linear-gradient(135deg, rgba(20, 25, 45, 0.95) 0%, rgba(30, 35, 55, 0.95) 100%);
-  border: 2px solid rgba(138, 43, 226, 0.4);
+  background: linear-gradient(135deg, rgba(20, 20, 22, 0.98) 0%, rgba(28, 28, 30, 0.98) 100%);
+  border: 2px solid rgba(27, 94, 32, 0.5);
   animation: fadeInDown 0.8s ease-out;
   backdrop-filter: blur(10px);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6),
+              0 0 60px rgba(255, 215, 0, 0.15);
 }
 
 .hero-section h1 {
-  background: linear-gradient(135deg, #8a2be2, #00bfff);
+  background: linear-gradient(135deg, #FFD700, #FFA500, #FFD700);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-shadow: none;
   margin-bottom: 10px;
   font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: 1px;
 }
 
 .hero-section .lead {
-  color: #b8c5d6;
+  color: #E8EDF2;
   font-size: 1.1rem;
   font-weight: 500;
 }
@@ -63,30 +66,51 @@ body::before {
 .section-heading {
   color: #ffffff;
   font-weight: bold;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
   padding: 15px 25px;
-  background: linear-gradient(135deg, rgba(138, 43, 226, 0.9), rgba(123, 31, 162, 0.9));
+  background: linear-gradient(135deg, rgba(27, 94, 32, 0.95), rgba(21, 71, 24, 0.95));
   border-radius: 12px;
   backdrop-filter: blur(10px);
-  border: 2px solid rgba(138, 43, 226, 0.3);
-  box-shadow: 0 8px 25px rgba(138, 43, 226, 0.4);
+  border: 2px solid rgba(255, 215, 0, 0.4);
+  box-shadow: 0 8px 25px rgba(27, 94, 32, 0.5),
+              inset 0 1px 0 rgba(255, 215, 0, 0.2);
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-heading::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.section-heading:hover::before {
+  left: 100%;
 }
 
 .section-heading:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 35px rgba(138, 43, 226, 0.5);
+  box-shadow: 0 12px 35px rgba(27, 94, 32, 0.6),
+              0 0 40px rgba(255, 215, 0, 0.3);
+  border-color: rgba(255, 215, 0, 0.6);
 }
 
+/* News/Sports Card */
 .news-card {
-  background: rgba(25, 30, 50, 0.95);
-  border-radius: 20px;
+  background: rgba(20, 20, 22, 0.98);
+  border-radius: 16px;
   overflow: hidden;
   transition: all 0.3s ease;
-  border: 1px solid rgba(138, 43, 226, 0.2);
+  border: 2px solid rgba(27, 94, 32, 0.3);
   display: flex;
   flex-direction: column;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
   position: relative;
 }
 
@@ -96,8 +120,8 @@ body::before {
   top: 0;
   left: 0;
   right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #8a2be2 0%, #00bfff 50%, #ff14b1 100%);
+  height: 4px;
+  background: linear-gradient(90deg, #1B5E20 0%, #FFD700 50%, #C0C0C0 100%);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.4s ease;
@@ -109,16 +133,17 @@ body::before {
 
 .news-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 50px rgba(138, 43, 226, 0.3), 
-              0 12px 30px rgba(0, 191, 255, 0.2);
-  border-color: rgba(138, 43, 226, 0.4);
+  box-shadow: 0 20px 50px rgba(27, 94, 32, 0.4), 
+              0 12px 30px rgba(255, 215, 0, 0.2),
+              0 0 60px rgba(27, 94, 32, 0.2);
+  border-color: rgba(255, 215, 0, 0.5);
 }
 
 .news-image {
   width: 100%;
-  height: auto;
+  height: 240px;
   overflow: hidden;
-  background: linear-gradient(135deg, #8a2be2 0%, #00bfff 50%, #ff14b1 100%);
+  background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 50%, #FFD700 100%);
   position: relative;
 }
 
@@ -129,7 +154,7 @@ body::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at top right, rgba(138, 43, 226, 0.3), transparent 70%);
+  background: radial-gradient(circle at top right, rgba(255, 215, 0, 0.25), transparent 70%);
   z-index: 1;
   pointer-events: none;
 }
@@ -144,7 +169,7 @@ body::before {
   background: linear-gradient(180deg, 
     transparent 0%, 
     rgba(0, 0, 0, 0.2) 50%,
-    rgba(0, 0, 0, 0.5) 100%);
+    rgba(0, 0, 0, 0.6) 100%);
   pointer-events: none;
   z-index: 2;
 }
@@ -154,10 +179,12 @@ body::before {
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease;
+  filter: brightness(0.9) contrast(1.1);
 }
 
 .news-card:hover .news-image img {
-  transform: scale(1.1);
+  transform: scale(1.08);
+  filter: brightness(1) contrast(1.15);
 }
 
 .news-content {
@@ -165,26 +192,26 @@ body::before {
   display: flex;
   flex-direction: column;
   padding: 24px;
-  background: linear-gradient(180deg, rgba(25, 30, 50, 0.98) 0%, rgba(30, 35, 55, 0.95) 100%);
+  background: linear-gradient(180deg, rgba(20, 20, 22, 0.98) 0%, rgba(15, 15, 17, 0.98) 100%);
 }
 
 .news-title {
-  color: #e0e7ff;
+  color: #F5F5F5;
   font-size: 1.2rem;
   margin-bottom: 14px;
   line-height: 1.5;
   min-height: 54px;
   font-weight: 700;
-  letter-spacing: -0.3px;
+  letter-spacing: -0.2px;
   transition: color 0.3s ease;
 }
 
 .news-card:hover .news-title {
-  color: #8a2be2;
+  color: #FFD700;
 }
 
 .news-text {
-  color: #a8b5cc;
+  color: #C0C0C0;
   font-size: 0.96rem;
   line-height: 1.7;
   margin-bottom: 16px;
@@ -192,70 +219,74 @@ body::before {
 }
 
 .news-date {
-  color: #00bfff;
+  color: #FFD700;
   font-size: 0.87rem;
   margin-top: auto;
   padding-top: 14px;
   border-top: 2px solid transparent;
-  background: linear-gradient(90deg, rgba(138, 43, 226, 0.3) 0%, transparent 100%) 
+  background: linear-gradient(90deg, rgba(27, 94, 32, 0.4) 0%, transparent 100%) 
               left bottom no-repeat;
   background-size: 60px 2px;
   font-weight: 600;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
   transition: all 0.3s ease;
 }
 
 .news-card:hover .news-date {
   background-size: 100% 2px;
+  color: #FFA500;
 }
 
 /* Empty State */
 .empty-state {
-  background: rgba(25, 30, 50, 0.4);
+  background: rgba(20, 20, 22, 0.6);
   border-radius: 15px;
   backdrop-filter: blur(10px);
-  border: 2px dashed rgba(138, 43, 226, 0.4);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  border: 2px dashed rgba(27, 94, 32, 0.5);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
 }
 
 .empty-state .fs-1 {
   font-size: 4rem;
-  opacity: 0.6;
-  filter: grayscale(0);
+  opacity: 0.5;
+  filter: grayscale(0.3);
 }
 
 .empty-state p {
-  color: #b8c5d6;
+  color: #C0C0C0;
   font-size: 1.1rem;
   margin: 0;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
 
 /* About Section */
 .about-section {
-  background: linear-gradient(135deg, rgba(20, 25, 45, 0.95) 0%, rgba(30, 35, 55, 0.95) 100%);
-  border: 2px solid rgba(0, 191, 255, 0.4);
+  background: linear-gradient(135deg, rgba(20, 20, 22, 0.98) 0%, rgba(28, 28, 30, 0.98) 100%);
+  border: 2px solid rgba(255, 215, 0, 0.4);
   animation: fadeInUp 1s ease-out;
   backdrop-filter: blur(10px);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6),
+              0 0 60px rgba(27, 94, 32, 0.15);
 }
 
 .about-section h2 {
-  background: linear-gradient(135deg, #00bfff, #8a2be2);
+  background: linear-gradient(135deg, #FFD700, #FFA500, #FFD700);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-bottom: 20px;
+  font-weight: 800;
 }
 
 .about-section .lead {
-  color: #d1dae6;
+  color: #F5F5F5;
   font-size: 1.15rem;
   font-weight: 600;
 }
 
 .about-section p {
-  color: #b8c5d6;
+  color: #E8EDF2;
   font-size: 1rem;
   line-height: 1.8;
   max-width: 800px;
@@ -264,28 +295,32 @@ body::before {
 
 .about-section .badge {
   font-size: 0.95rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.5px;
   padding: 10px 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .about-section .badge:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(138, 43, 226, 0.5);
+  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
 }
 
 .bg-primary {
-  background: linear-gradient(135deg, #00bfff, #0080ff) !important;
+  background: linear-gradient(135deg, #1B5E20, #2E7D32) !important;
 }
 
 .bg-success {
-  background: linear-gradient(135deg, #10b981, #059669) !important;
+  background: linear-gradient(135deg, #FFD700, #FFA500) !important;
+  color: #0d0d0d !important;
 }
 
 .bg-warning {
-  background: linear-gradient(135deg, #fbbf24, #f59e0b) !important;
+  background: linear-gradient(135deg, #C0C0C0, #A8A8A8) !important;
+  color: #0d0d0d !important;
 }
 
 /* Animations */
@@ -368,7 +403,7 @@ body::before {
 
 /* Utilities */
 .shadow-sm {
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4) !important;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5) !important;
 }
 
 .rounded {
@@ -381,14 +416,43 @@ body::before {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(10, 14, 39, 0.8);
+  background: rgba(13, 13, 13, 0.9);
+  border-left: 1px solid rgba(27, 94, 32, 0.2);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #8a2be2, #00bfff);
+  background: linear-gradient(135deg, #1B5E20, #FFD700);
   border-radius: 6px;
+  border: 2px solid rgba(13, 13, 13, 0.9);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #00bfff, #8a2be2);
+  background: linear-gradient(135deg, #FFD700, #1B5E20);
+}
+
+/* Additional Sports-specific Elements */
+
+/* Score Badge */
+.score-badge {
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  color: #0d0d0d;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+}
+
+/* Championship Banner */
+.championship-banner {
+  border: 3px solid #FFD700;
+  background: linear-gradient(135deg, rgba(27, 94, 32, 0.3), rgba(20, 20, 22, 0.8));
+  box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+}
+
+/* Stats Highlight */
+.stats-highlight {
+  color: #FFD700;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 }
