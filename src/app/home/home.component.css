@@ -1,7 +1,7 @@
-/* Global Styles - Classic Sports Premium */
+/* Global Styles */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #0d0d0d;
+ 
   min-height: 100vh;
   padding: 20px 0;
   position: relative;
@@ -15,9 +15,9 @@ body::before {
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 20% 50%, rgba(27, 94, 32, 0.12) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 40% 20%, rgba(192, 192, 192, 0.06) 0%, transparent 50%);
+    radial-gradient(circle at 20% 50%, rgba(255, 87, 51, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(46, 213, 115, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 40% 20%, rgba(52, 152, 219, 0.15) 0%, transparent 50%);
   pointer-events: none;
   z-index: 0;
 }
@@ -32,28 +32,25 @@ body::before {
 
 /* Hero Section */
 .hero-section {
-  background: linear-gradient(135deg, rgba(20, 20, 22, 0.98) 0%, rgba(28, 28, 30, 0.98) 100%);
-  border: 2px solid rgba(27, 94, 32, 0.5);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 249, 250, 0.95) 100%);
+  border: 2px solid rgba(255, 87, 51, 0.3);
   animation: fadeInDown 0.8s ease-out;
   backdrop-filter: blur(10px);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6),
-              0 0 60px rgba(255, 215, 0, 0.15);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
 .hero-section h1 {
-  background: linear-gradient(135deg, #FFD700, #FFA500, #FFD700);
+  background: linear-gradient(135deg, #ff5733, #ff8c42);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-shadow: none;
   margin-bottom: 10px;
   font-size: 3rem;
-  font-weight: 800;
-  letter-spacing: 1px;
 }
 
 .hero-section .lead {
-  color: #E8EDF2;
+  color: #333;
   font-size: 1.1rem;
   font-weight: 500;
 }
@@ -66,51 +63,30 @@ body::before {
 .section-heading {
   color: #ffffff;
   font-weight: bold;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
   padding: 15px 25px;
-  background: linear-gradient(135deg, rgba(27, 94, 32, 0.95), rgba(21, 71, 24, 0.95));
+  background: linear-gradient(135deg, rgba(255, 87, 51, 0.9), rgba(255, 140, 66, 0.9));
   border-radius: 12px;
   backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 215, 0, 0.4);
-  box-shadow: 0 8px 25px rgba(27, 94, 32, 0.5),
-              inset 0 1px 0 rgba(255, 215, 0, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 25px rgba(255, 87, 51, 0.4);
   transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.section-heading::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
-  transition: left 0.5s ease;
-}
-
-.section-heading:hover::before {
-  left: 100%;
 }
 
 .section-heading:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 35px rgba(27, 94, 32, 0.6),
-              0 0 40px rgba(255, 215, 0, 0.3);
-  border-color: rgba(255, 215, 0, 0.6);
+  box-shadow: 0 12px 35px rgba(255, 87, 51, 0.5);
 }
 
-/* News/Sports Card */
 .news-card {
-  background: rgba(20, 20, 22, 0.98);
-  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
   overflow: hidden;
   transition: all 0.3s ease;
-  border: 2px solid rgba(27, 94, 32, 0.3);
+  border: 1px solid rgba(255, 87, 51, 0.08);
   display: flex;
   flex-direction: column;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
   position: relative;
 }
 
@@ -120,8 +96,8 @@ body::before {
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #1B5E20 0%, #FFD700 50%, #C0C0C0 100%);
+  height: 3px;
+  background: linear-gradient(90deg, #ff5733 0%, #ff8c42 50%, #ffa07a 100%);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.4s ease;
@@ -133,17 +109,16 @@ body::before {
 
 .news-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 50px rgba(27, 94, 32, 0.4), 
-              0 12px 30px rgba(255, 215, 0, 0.2),
-              0 0 60px rgba(27, 94, 32, 0.2);
-  border-color: rgba(255, 215, 0, 0.5);
+  box-shadow: 0 20px 50px rgba(255, 87, 51, 0.2), 
+              0 12px 30px rgba(255, 140, 66, 0.12);
+  border-color: rgba(255, 87, 51, 0.25);
 }
 
 .news-image {
   width: 100%;
-  height: 240px;
+  height: auto;
   overflow: hidden;
-  background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 50%, #FFD700 100%);
+  background: linear-gradient(135deg, #ff5733 0%, #ff8c42 50%, #ffa07a 100%);
   position: relative;
 }
 
@@ -154,7 +129,7 @@ body::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at top right, rgba(255, 215, 0, 0.25), transparent 70%);
+  background: radial-gradient(circle at top right, rgba(255, 160, 122, 0.3), transparent 70%);
   z-index: 1;
   pointer-events: none;
 }
@@ -168,8 +143,8 @@ body::before {
   bottom: 0;
   background: linear-gradient(180deg, 
     transparent 0%, 
-    rgba(0, 0, 0, 0.2) 50%,
-    rgba(0, 0, 0, 0.6) 100%);
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0.35) 100%);
   pointer-events: none;
   z-index: 2;
 }
@@ -179,12 +154,10 @@ body::before {
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease;
-  filter: brightness(0.9) contrast(1.1);
 }
 
 .news-card:hover .news-image img {
-  transform: scale(1.08);
-  filter: brightness(1) contrast(1.15);
+  transform: scale(1.1);
 }
 
 .news-content {
@@ -192,26 +165,26 @@ body::before {
   display: flex;
   flex-direction: column;
   padding: 24px;
-  background: linear-gradient(180deg, rgba(20, 20, 22, 0.98) 0%, rgba(15, 15, 17, 0.98) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 250, 245, 0.95) 100%);
 }
 
 .news-title {
-  color: #F5F5F5;
+  color: #1a1a1a;
   font-size: 1.2rem;
   margin-bottom: 14px;
   line-height: 1.5;
   min-height: 54px;
   font-weight: 700;
-  letter-spacing: -0.2px;
+  letter-spacing: -0.3px;
   transition: color 0.3s ease;
 }
 
 .news-card:hover .news-title {
-  color: #FFD700;
+  color: #ff5733;
 }
 
 .news-text {
-  color: #C0C0C0;
+  color: #4a4a4a;
   font-size: 0.96rem;
   line-height: 1.7;
   margin-bottom: 16px;
@@ -219,74 +192,70 @@ body::before {
 }
 
 .news-date {
-  color: #FFD700;
+  color: #ff5733;
   font-size: 0.87rem;
   margin-top: auto;
   padding-top: 14px;
   border-top: 2px solid transparent;
-  background: linear-gradient(90deg, rgba(27, 94, 32, 0.4) 0%, transparent 100%) 
+  background: linear-gradient(90deg, rgba(255, 87, 51, 0.15) 0%, transparent 100%) 
               left bottom no-repeat;
   background-size: 60px 2px;
   font-weight: 600;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
+  letter-spacing: 0.3px;
   transition: all 0.3s ease;
 }
 
 .news-card:hover .news-date {
   background-size: 100% 2px;
-  color: #FFA500;
 }
 
 /* Empty State */
 .empty-state {
-  background: rgba(20, 20, 22, 0.6);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 15px;
   backdrop-filter: blur(10px);
-  border: 2px dashed rgba(27, 94, 32, 0.5);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+  border: 2px dashed rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
 .empty-state .fs-1 {
   font-size: 4rem;
-  opacity: 0.5;
-  filter: grayscale(0.3);
+  opacity: 0.6;
+  filter: grayscale(0);
 }
 
 .empty-state p {
-  color: #C0C0C0;
+  color: #ffffff;
   font-size: 1.1rem;
   margin: 0;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* About Section */
 .about-section {
-  background: linear-gradient(135deg, rgba(20, 20, 22, 0.98) 0%, rgba(28, 28, 30, 0.98) 100%);
-  border: 2px solid rgba(255, 215, 0, 0.4);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 249, 250, 0.95) 100%);
+  border: 2px solid rgba(46, 213, 115, 0.3);
   animation: fadeInUp 1s ease-out;
   backdrop-filter: blur(10px);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6),
-              0 0 60px rgba(27, 94, 32, 0.15);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
 .about-section h2 {
-  background: linear-gradient(135deg, #FFD700, #FFA500, #FFD700);
+  background: linear-gradient(135deg, #2ed573, #26de81);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-bottom: 20px;
-  font-weight: 800;
 }
 
 .about-section .lead {
-  color: #F5F5F5;
+  color: #222;
   font-size: 1.15rem;
   font-weight: 600;
 }
 
 .about-section p {
-  color: #E8EDF2;
+  color: #444;
   font-size: 1rem;
   line-height: 1.8;
   max-width: 800px;
@@ -295,32 +264,28 @@ body::before {
 
 .about-section .badge {
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.5px;
   padding: 10px 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
-  text-transform: uppercase;
-  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .about-section .badge:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 .bg-primary {
-  background: linear-gradient(135deg, #1B5E20, #2E7D32) !important;
+  background: linear-gradient(135deg, #3498db, #2980b9) !important;
 }
 
 .bg-success {
-  background: linear-gradient(135deg, #FFD700, #FFA500) !important;
-  color: #0d0d0d !important;
+  background: linear-gradient(135deg, #2ed573, #26de81) !important;
 }
 
 .bg-warning {
-  background: linear-gradient(135deg, #C0C0C0, #A8A8A8) !important;
-  color: #0d0d0d !important;
+  background: linear-gradient(135deg, #ffd93d, #f6b93b) !important;
 }
 
 /* Animations */
@@ -403,7 +368,7 @@ body::before {
 
 /* Utilities */
 .shadow-sm {
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5) !important;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2) !important;
 }
 
 .rounded {
@@ -416,43 +381,14 @@ body::before {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(13, 13, 13, 0.9);
-  border-left: 1px solid rgba(27, 94, 32, 0.2);
+  background: rgba(0, 0, 0, 0.3);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #1B5E20, #FFD700);
+  background: linear-gradient(135deg, #ff5733, #ff8c42);
   border-radius: 6px;
-  border: 2px solid rgba(13, 13, 13, 0.9);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #FFD700, #1B5E20);
-}
-
-/* Additional Sports-specific Elements */
-
-/* Score Badge */
-.score-badge {
-  background: linear-gradient(135deg, #FFD700, #FFA500);
-  color: #0d0d0d;
-  padding: 8px 16px;
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: 1.1rem;
-  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
-}
-
-/* Championship Banner */
-.championship-banner {
-  border: 3px solid #FFD700;
-  background: linear-gradient(135deg, rgba(27, 94, 32, 0.3), rgba(20, 20, 22, 0.8));
-  box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
-}
-
-/* Stats Highlight */
-.stats-highlight {
-  color: #FFD700;
-  font-weight: 700;
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  background: linear-gradient(135deg, #ff8c42, #ff5733);
 }
