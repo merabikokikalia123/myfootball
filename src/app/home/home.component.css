@@ -337,10 +337,6 @@ body::before {
     padding: 12px 15px;
   }
 
-  .news-image {
-    height: 200px;
-  }
-
   .news-title {
     font-size: 1.05rem;
   }
