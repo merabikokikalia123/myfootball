@@ -19,7 +19,7 @@
     <div class="row g-4">
       <ng-container *ngIf="hasCategoryNews(category); else emptyState">
         
-        <div class="col-lg-4 col-md-6" *ngFor="let news of getCategoryNews(category)">
+        <div class="col-lg-4 col-md-6 w-100" *ngFor="let news of getCategoryNews(category)">
           <div class="news-card shadow-sm">
             
             <div class="news-image">
