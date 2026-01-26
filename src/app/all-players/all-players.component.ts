@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { PlayerService } from '../services/player.service';
-import { Router } from '@angular/router';
 
 export interface Player {
   id?: number;
@@ -38,8 +37,7 @@ export class AllPlayersComponent implements OnInit {
 
   constructor(
     private sanitizer: DomSanitizer,
-    private playerService: PlayerService,
-    private router: Router
+    private playerService: PlayerService
   ) {}
 
   ngOnInit(): void {
@@ -85,23 +83,5 @@ export class AllPlayersComponent implements OnInit {
 
   safeUrl(url: string): SafeResourceUrl {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
-  }
-
-  // ✏️ EDIT
-  editPlayer(player: Player): void {
-    if (!player.id) return;
-    this.router.navigate(['/edit-player', player.id]);
-  }
-
-  // 🗑 DELETE
-  deletePlayer(id?: number): void {
-    if (!id) return;
-
-    if (confirm('Are you sure you want to delete this player?')) {
-      this.playerService.deletePlayer(id).subscribe(() => {
-        this.players = this.players.filter((p) => p.id !== id);
-        this.applyFilter();
-      });
-    }
   }
 }
