@@ -1,7 +1,7 @@
-<!-- ADD PLAYER -->
+<!-- ADD / EDIT PLAYER -->
 <div class="card mb-4">
   <div class="card-body">
-    <h5>Add Football Player</h5>
+    <h5>{{ editMode ? 'Edit Player' : 'Add Football Player' }}</h5>
 
     <input
       class="form-control mb-2"
@@ -41,8 +41,11 @@
       [(ngModel)]="country"
     />
 
-    <button class="btn btn-success w-100" (click)="buyPlayerSlot()">
-      ➕ Add Player
+    <button
+      class="btn btn-success w-100"
+      (click)="editMode ? updatePlayer() : addPlayer()"
+    >
+      {{ editMode ? '💾 Update Player' : '➕ Add Player' }}
     </button>
   </div>
 </div>
@@ -57,6 +60,7 @@
         alt="{{ p.name }}"
         *ngIf="p.photoUrl"
       />
+
       <div class="card-body">
         <h5>{{ p.name }}</h5>
         <p>Age: {{ p.age }}</p>
@@ -74,13 +78,23 @@
           ></iframe>
         </div>
 
-        <button
-          class="btn btn-danger btn-sm mt-2 w-100"
-          (click)="deletePlayer(p)"
-        >
-          🗑 Delete
-        </button>
+        <div class="d-flex gap-2 mt-2">
+          <button
+            class="btn btn-primary btn-sm w-100"
+            (click)="editPlayer(p)"
+          >
+            ✏️ Edit
+          </button>
+
+          <button
+            class="btn btn-danger btn-sm w-100"
+            (click)="deletePlayer(p)"
+          >
+            🗑 Delete
+          </button>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
