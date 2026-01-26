@@ -26,16 +26,20 @@ export class ScoutingFootballComponent implements OnInit {
   videoUrl = '';
   country = '';
 
+  // ✏️ EDIT state
+  editMode = false;
+  editingPlayerId: number | undefined;
+
   constructor(private playerService: PlayerService) {}
 
   ngOnInit() {
-    // აბონენტი ფეხბურთელებზე
     this.playerService.getPlayers().subscribe((players) => {
       this.players = players.filter((p) => p.sport === 'Football');
       this.filteredPlayers = this.players;
     });
   }
 
+  // ➕ ADD
   buyPlayerSlot() {
     if (!this.name || !this.age || !this.position || !this.country) {
       alert('ყველა ველი სავალდებულოა');
@@ -54,16 +58,7 @@ export class ScoutingFootballComponent implements OnInit {
     };
 
     this.playerService.addPlayer(newPlayer).subscribe({
-      next: () => {
-        // ფორმის reset
-        this.name = '';
-        this.age = null;
-        this.position = '';
-        this.height = null;
-        this.photoUrl = '';
-        this.videoUrl = '';
-        this.country = '';
-      },
+      next: () => this.resetForm(),
       error: (error) => {
         alert(
           error?.error?.message ||
@@ -73,6 +68,48 @@ export class ScoutingFootballComponent implements OnInit {
     });
   }
 
+  // ✏️ START EDIT
+  editPlayer(player: Player) {
+    this.editMode = true;
+    this.editingPlayerId = player.id;
+
+    this.name = player.name;
+    this.age = player.age;
+    this.position = player.position ?? '';
+    this.height = player.height ?? null;
+    this.photoUrl = player.photoUrl ?? '';
+    this.videoUrl = player.videoUrl ?? '';
+    this.country = player.country ?? '';
+  }
+
+  // 💾 UPDATE
+  updatePlayer() {
+    if (!this.editingPlayerId) return;
+
+    const updatedPlayer: Player = {
+      id: this.editingPlayerId,
+      name: this.name,
+      age: this.age!,
+      sport: 'Football',
+      position: this.position,
+      height: this.height ?? 180,
+      country: this.country,
+      photoUrl: this.photoUrl,
+      videoUrl: toYoutubeEmbedUrl(this.videoUrl) || undefined,
+    };
+
+    this.playerService.updatePlayer(updatedPlayer).subscribe({
+      next: () => this.resetForm(),
+      error: (error) => {
+        alert(
+          error?.error?.message ||
+            'განახლება ვერ მოხერხდა (შესაძლოა Admin იყოს საჭირო)'
+        );
+      },
+    });
+  }
+
+  // 🗑 DELETE (უცვლელი)
   deletePlayer(player: Player) {
     if (confirm(`ნამდვილად გინდა ამ მოთამაშის "${player.name}" წაშლა?`)) {
       this.playerService.deletePlayer(player).subscribe({
@@ -85,4 +122,18 @@ export class ScoutingFootballComponent implements OnInit {
       });
     }
   }
+
+  resetForm() {
+    this.editMode = false;
+    this.editingPlayerId = undefined;
+
+    this.name = '';
+    this.age = null;
+    this.position = '';
+    this.height = null;
+    this.photoUrl = '';
+    this.videoUrl = '';
+    this.country = '';
+  }
 }
+
