@@ -57,48 +57,48 @@
 
         <div class="card-body">
           <h5 class="card-title">{{ player.name }}</h5>
+
           <p class="card-text">
             <strong>Age:</strong> {{ player.age }} <br />
+
             <strong>Sport:</strong>
-            <span class="badge" [ngClass]="getSportBadge(player.sport)">{{
-              player.sport
-            }}</span>
+            <span class="badge" [ngClass]="getSportBadge(player.sport)">
+              {{ player.sport }}
+            </span>
             <br />
 
-            <span *ngIf="player.position"
-              ><strong>Position:</strong> {{ player.position }}</span
-            ><br *ngIf="player.position" />
+            <span *ngIf="player.position">
+              <strong>Position:</strong> {{ player.position }}
+            </span><br *ngIf="player.position" />
 
-            <span *ngIf="player.height"
-              ><strong>Height:</strong> {{ player.height }} cm</span
-            ><br *ngIf="player.height" />
+            <span *ngIf="player.height">
+              <strong>Height:</strong> {{ player.height }} cm
+            </span><br *ngIf="player.height" />
 
-            <span *ngIf="player.country"
-              ><strong>Country:</strong> {{ player.country }}</span
-            ><br *ngIf="player.country" />
+            <span *ngIf="player.country">
+              <strong>Country:</strong> {{ player.country }}
+            </span><br *ngIf="player.country" />
 
-            <span *ngIf="player.weightCategory"
-              ><strong>Weight:</strong> {{ player.weightCategory }}</span
-            ><br *ngIf="player.weightCategory" />
+            <span *ngIf="player.weightCategory">
+              <strong>Weight:</strong> {{ player.weightCategory }}
+            </span><br *ngIf="player.weightCategory" />
 
-            <span *ngIf="player.belt"
-              ><strong>Belt:</strong> {{ player.belt }}</span
-            ><br *ngIf="player.belt" />
+            <span *ngIf="player.belt">
+              <strong>Belt:</strong> {{ player.belt }}
+            </span><br *ngIf="player.belt" />
 
-            <span *ngIf="player.weightClass"
-              ><strong>Class:</strong> {{ player.weightClass }}</span
-            ><br *ngIf="player.weightClass" />
+            <span *ngIf="player.weightClass">
+              <strong>Class:</strong> {{ player.weightClass }}
+            </span><br *ngIf="player.weightClass" />
 
-            <span *ngIf="player.record"
-              ><strong>Record:</strong> {{ player.record }}</span
-            >
+            <span *ngIf="player.record">
+              <strong>Record:</strong> {{ player.record }}
+            </span>
           </p>
 
           <div
-            *ngIf="
-              player.videoUrl && !player.videoUrl.endsWith('youtube.com/embed/')
-            "
-            class="player-video"
+            *ngIf="player.videoUrl && !player.videoUrl.endsWith('youtube.com/embed/')"
+            class="player-video mb-3"
           >
             <iframe
               [src]="safeUrl(player.videoUrl)"
@@ -108,6 +108,24 @@
               height="200"
             ></iframe>
           </div>
+
+          <!-- EDIT / DELETE -->
+          <div class="d-flex justify-content-between">
+            <button
+              class="btn btn-sm btn-outline-primary"
+              (click)="editPlayer(player)"
+            >
+              ✏️ Edit
+            </button>
+
+            <button
+              class="btn btn-sm btn-outline-danger"
+              (click)="deletePlayer(player.id)"
+            >
+              🗑 Delete
+            </button>
+          </div>
+
         </div>
       </div>
     </div>
