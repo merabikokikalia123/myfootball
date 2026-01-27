@@ -2,7 +2,7 @@
 
   <!-- Header -->
   <div class="header">
-    <h1>მოთამაშის დამატება</h1>
+    <h1> მოთამაშის დამატება</h1>
     <p>დაამატე მოთამაშე სრული პროფილით</p>
   </div>
 
@@ -11,54 +11,57 @@
     {{ message }}
   </div>
 
-  <!-- Offer Card -->
+  <!-- Offer -->
   <div class="plans-grid">
+
     <div class="plan-card plan-featured">
 
-      <!-- Badge -->
       <div class="plan-badge badge-vip">OFFER</div>
 
-      <!-- Price -->
       <div class="plan-price">
-        25 ₾ <span>/ 1 თვე</span><br>
+        25 ₾ <span>/ 1 თვე</span>
         250 ₾ <span>/ 1 წელი</span>
       </div>
 
-      <!-- Plan Name -->
       <h3 class="plan-name">1 მოთამაშის დამატება</h3>
 
-      <!-- Highlight -->
       <div class="plan-highlight premium-highlight">
-        <strong>სრული პროფილი არჩეული პერიოდის განმავლობაში</strong>
+        <strong>
+          სრული პროფილი 1 თვის განმავლობაში
+        </strong>
       </div>
 
-      <!-- Features -->
       <ul class="plan-features">
         <li>✓ მოთამაშის სრული ინფორმაცია</li>
         <li>✓ ფოტო (Profile Image)</li>
         <li>✓ ვიდეო (YouTube)</li>
         <li>✓ პოზიცია, ასაკი, სიმაღლე</li>
-        <li>✓ არჩეული პერიოდის განმავლობაში აქტიური</li>
-        <li>✓ ყოველ თამაშზე შედეგიანი მოქმედება აიტვირთება მთავარ გვერდზე</li>
+        <li>✓ 1 თვის განმავლობაში აქტიური</li>
       </ul>
 
-      <!-- WhatsApp Contact -->
-      <div class="whatsapp-contact">
-        <a
-          class="whatsapp-btn"
-          [href]="getWhatsAppLink()"
-          target="_blank"
-          rel="noopener noreferrer"
-          (click)="buyPlayerSlot()">
-          💬 მოგვწერე WhatsApp-ზე
-        </a>
+    <div class="whatsapp-contact">
 
-        <div class="whatsapp-number">
-          📱 WhatsApp ნომერი: <strong>+{{ whatsappNumber }}</strong>
-        </div>
-      </div>
 
-    </div>
+
+
+  <a
+    class="whatsapp-btn"
+    [href]="getWhatsAppLink()"
+    target="_blank"
+    rel="noopener noreferrer">
+    💬 მოგვწერე WhatsApp-ზე
+  </a>
+
+  <div class="whatsapp-number">
+    📱 WhatsApp ნომერი: <strong>+{{ whatsappNumber }}</strong>
   </div>
 
 </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+
